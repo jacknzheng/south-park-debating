@@ -97,6 +97,19 @@ html { scroll-behavior: smooth }
 .pill-button { display: inline-flex; gap: 12px; margin-top: 40px; padding: 14px 28px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: var(--text-body) }
 .pill-button:hover { text-decoration: none; opacity: .85 }
 .empty-state { padding: 48px 0 }
+.poll { list-style: none; padding: 0; margin: 0 }
+.poll-option { display: flex; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line); font-size: var(--text-h2); cursor: pointer }
+.poll-option input { width: 20px; height: 20px; accent-color: var(--ink) }
+.poll .pill-button { border: 0; cursor: pointer }
+.poll .pill-button:disabled { opacity: .35; cursor: default }
+.poll > .list-meta { margin-top: 16px }
+.poll-result { display: grid; grid-template-columns: minmax(0, 1fr) 2fr 90px; align-items: center; gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); font-size: var(--text-h2) }
+.poll-result .tag { margin: 0 0 0 12px; vertical-align: middle }
+.poll-bar { height: 10px; background: var(--line) }
+.poll-bar span { display: block; height: 100%; background: var(--ink) }
+.poll-result .list-meta { text-align: right }
+.topics-reading { margin-top: 64px; color: var(--muted) }
+.topics-reading a { margin-left: 8px; color: var(--ink) }
 .empty-state button { border: 0; border-bottom: 1px solid var(--ink); background: none; padding: 0 0 3px; margin-top: 16px }
 
 /* Misc */
@@ -138,6 +151,8 @@ html { scroll-behavior: smooth }
   .list-count .list-meta { margin-top: 8px }
   .search { display: block; margin-top: 16px }
   .search input { width: 100% }
+  .poll-result { grid-template-columns: 1fr auto; gap: 8px 16px }
+  .poll-bar { grid-column: 1 / -1; grid-row: 2 }
   .list-row, .team-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0 }
   .list-row .cover-image { order: -1 }
   .list-date span { display: inline; margin-left: 8px }

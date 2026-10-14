@@ -23,14 +23,37 @@ The build creates Start’s client and server bundles, then prerenders each rout
 
 ## Pages
 
-- `/`: this week's topic, date and venue up top, then past debates with images.
-- `/teams`: this week's preliminary teams and judge.
+- `/`: a call to vote on next week's topic, with its date and venue, then past debates with images.
+- `/teams`: the upcoming debate's teams and judges (says so when teams aren't picked yet).
 - `/archive`: past debates as a CFR events-style list (date, category tag, motion, result, image), searchable. Link to one debate with `/archive#<id>`, e.g. `/archive#2026-10-06`.
-- `/topics`: links out to the Topics by week page in Notion.
+- `/topics`: the topic poll for next week, plus a link to the Topics by week page in Notion.
 
 ## Update a week
 
 Edit `src/debates.ts`. Add the newest entry first. Dates, teams, results, and the featured current week come from this file. Unknown dates remain explicit, and missing team assignments are never inferred.
+
+## Topic poll
+
+Topics and the poll's week live in `poll` in `src/debates.ts`. Votes are stored in Supabase; a cookie (`voted_<week>`) stops a browser voting twice and unlocks the results. For a new poll, change `poll.week` and `poll.topics`.
+
+The site needs two values, in `.env` locally and as GitHub repository **variables** for the deploy:
+
+- `VITE_SUPABASE_URL`: the project URL, e.g. `https://abcd.supabase.co`
+- `VITE_SUPABASE_KEY`: the **publishable** (anon) key. Never the secret/service_role key, because this one is visible to every visitor.
+
+Run once in the Supabase SQL editor:
+
+```sql
+create table topic_votes (
+  id bigint generated always as identity primary key,
+  week date not null,
+  topic text not null,
+  created_at timestamptz not null default now()
+);
+alter table topic_votes enable row level security;
+create policy "anyone can vote" on topic_votes for insert to anon with check (true);
+create policy "anyone can see votes" on topic_votes for select to anon using (true);
+```
 
 ## Offline design preview
 
@@ -38,10 +61,9 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 ## Content assumptions
 
-- The current roster is for Tuesday, October 13, 2026, 6:00pm at South Park Commons: genetic engineering and transhumanism.
-- Past debates: AI judges and juries (October 6), AI referendums (September 22), AI disclosure (September 15).
+- Next debate: Tuesday, October 20, 2026, 6:00pm at South Park Commons; topic decided by the poll.
+- Past debates: AI persuasion (October 13), AI judges and juries (October 6), AI referendums (September 22), AI disclosure (September 15).
 - September 15 lists Jack Zheng and Sam Miserendino as recorded participants. Their team assignments were not supplied.
-- This week’s Jeffrey Cheng invitation is tentative; Team 4 remains incomplete.
 
 ## Assets and hosting
 

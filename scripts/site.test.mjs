@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile, stat } from 'node:fs/promises'
-import { debates } from '../src/debates.ts'
+import { debates, poll } from '../src/debates.ts'
 import server from '../dist/server/server.js'
 
 const htmlFor = async path => {
@@ -13,7 +13,8 @@ const htmlFor = async path => {
 test('home leads with this week, then past debates with images', async () => {
   const html = await htmlFor('/')
   assert.match(html, /class="this-week"/)
-  assert.match(html, /Genetic engineering &amp; transhumanism/)
+  assert.match(html, /Vote on next week’s topic/)
+  assert.match(html, /href="\/south-park-debating\/topics"/)
   assert.match(html, /Tuesday, October 20 · 6:00pm · South Park Commons/)
   assert.match(html, /class="editorial-grid"/)
   assert.match(html, /undisclosed persuasion/)
@@ -29,7 +30,7 @@ test('home leads with this week, then past debates with images', async () => {
 test('teams page shows next week\'s debate and says teams are not picked yet', async () => {
   const html = await htmlFor('/teams')
   assert.match(html, /October 20/)
-  assert.match(html, /Genetic engineering/)
+  assert.match(html, /Topic up for vote/)
   assert.match(html, /Teams haven’t been picked yet/)
 })
 
@@ -42,8 +43,11 @@ test('past debates page lists all four with dates, results and images', async ()
   assert.match(html, /type="search"/)
 })
 
-test('topics page links to the Notion topics list', async () => {
+test('topics page shows the poll and links to the Notion topics list', async () => {
   const html = await htmlFor('/topics')
+  for (const topic of poll.topics) assert.ok(html.includes(topic.replace('&', '&amp;')), topic)
+  assert.equal((html.match(/type="radio"/g) || []).length, 6)
+  assert.match(html, /Tuesday, October 20/)
   assert.match(html, /href="https:\/\/app\.notion\.com\/p\/jacknzheng\/Topics-by-week-/)
   assert.match(html, /target="_blank"/)
 })

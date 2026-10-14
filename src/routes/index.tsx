@@ -7,10 +7,10 @@ function Home() {
   const [current, lastWeek, ...older] = debates
   return <main id="main" className="front-page">
     <section className="this-week" aria-labelledby="this-week-title">
-      <p className="label">This week</p>
-      <h1 id="this-week-title"><Link to="/teams">{current.title}</Link></h1>
+      <p className="label">Next week</p>
+      <h1 id="this-week-title"><Link to="/topics">Vote on next week’s topic</Link></h1>
       <p className="this-week-meta">{`${current.dateLabel} · ${current.time} · ${current.venue}`}</p>
-      <Link className="underlined-link" to="/teams">See the teams <span aria-hidden="true">→</span></Link>
+      <Link className="underlined-link" to="/topics">Cast your vote <span aria-hidden="true">→</span></Link>
     </section>
     <section className="editorial-grid" aria-label="Past debates">
       <article className="featured-debate">

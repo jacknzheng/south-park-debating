@@ -20,15 +20,21 @@ export interface Debate {
   image?: string;
 }
 
+// The topic poll on /topics. Votes are stored per week, so a new poll just needs a new week id.
+export const poll = {
+  week: '2026-10-20',
+  topics: ['Designer babies', 'Universal basic income', 'US–China geopolitics', 'Factory farming', 'Peptides & experimental drugs', 'AI warfare & US hegemony'],
+}
+
 // Newest first. Incomplete rosters are kept explicit.
 // This is the only file to edit when adding a debate or changing a roster.
 export const debates: Debate[] = [
   {
-    id: '2026-10-20', title: 'Genetic engineering & transhumanism',
-    shortTitle: 'Genetic engineering & transhumanism', date: '2026-10-20',
+    id: '2026-10-20', title: 'Topic up for vote',
+    shortTitle: 'Topic up for vote', date: '2026-10-20',
     dateLabel: 'Tuesday, October 20', time: '6:00pm', venue: 'South Park Commons',
-    category: 'Science & society', status: 'upcoming',
-    description: 'What does it mean to be human when we can change what makes us human? Join this week’s conversation on genetic engineering and transhumanism.',
+    category: 'To be decided', status: 'upcoming',
+    description: 'Next week’s topic is chosen by vote on the Topics page.',
   },
   {
     id: '2026-10-13',
