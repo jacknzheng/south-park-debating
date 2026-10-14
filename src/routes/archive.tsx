@@ -10,7 +10,7 @@ export const Route = createFileRoute('/archive')({
 function Archive() {
   const [query, setQuery] = useState('')
   const past = debates.filter(debate => debate.status === 'past')
-  const results = past.filter(debate => [debate.title, debate.dateLabel, debate.category, debate.judge, ...(debate.winners ?? []), ...(debate.participants ?? [])].join(' ').toLowerCase().includes(query.trim().toLowerCase()))
+  const results = past.filter(debate => [debate.title, debate.dateLabel, debate.category, ...(debate.judges ?? []), ...(debate.winners ?? []), ...(debate.participants ?? [])].join(' ').toLowerCase().includes(query.trim().toLowerCase()))
   return <main id="main" className="list-page">
     <h1>Past debates</h1>
     <div className="list-count"><p>{past.length} debates</p><label className="search"><span className="sr-only">Search motions or debaters</span><input type="search" placeholder="Search motions or debaters" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
@@ -20,7 +20,7 @@ function Archive() {
         <div>
           <p className="tag">{debate.category}</p>
           <h2>{debate.title}</h2>
-          <p className="list-meta">{debate.winners ? `${debate.result}: ${debate.winners.join(', ')}` : debate.result}{debate.judge && <span>Judge: {debate.judge}</span>}</p>
+          <p className="list-meta">{debate.winners ? `${debate.result}: ${debate.winners.join(', ')}` : debate.result}{debate.judges && <span>{`${debate.judges.length > 1 ? 'Judges' : 'Judge'}: ${debate.judges.join(', ')}`}</span>}</p>
         </div>
         {debate.image && <img className="cover-image" src={import.meta.env.BASE_URL + debate.image} alt="" />}
       </article>)}

@@ -19,7 +19,7 @@ function Home() {
           <div><p className="label">{`Last week · ${lastWeek.dateLabel}`}</p><h2><Link to="/archive" hash={lastWeek.id}>{lastWeek.title}</Link></h2></div>
           <dl className="feature-result">
             <dt>{lastWeek.result}</dt><dd>{lastWeek.winners?.join(', ')}</dd>
-            <dt>Judge</dt><dd>{lastWeek.judge}</dd>
+            <dt>{lastWeek.judges!.length > 1 ? 'Judges' : 'Judge'}</dt><dd>{lastWeek.judges!.join(', ')}</dd>
           </dl>
         </div>
       </article>
