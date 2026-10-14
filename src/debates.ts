@@ -32,7 +32,7 @@ export const debates: Debate[] = [
   },
   {
     id: '2026-10-13',
-    title: 'This house would permit AI assistants to use undisclosed persuasion to protect users’ long-term wellbeing, even against their expressed preferences.',
+    title: 'We should permit AI assistants to use undisclosed persuasion to protect users’ long-term wellbeing',
     shortTitle: 'Should AI nudge you for your own good?', date: '2026-10-13', dateLabel: 'October 13, 2026',
     category: 'AI & wellbeing', status: 'past', image: 'images/ai-persuasion.jpg',
     description: 'Should an AI quietly steer you toward what is good for you, even when you have said you want something else?',
