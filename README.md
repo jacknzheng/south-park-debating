@@ -11,7 +11,7 @@ npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173`. The development server supports live updates.
+Open `http://127.0.0.1:4173/south-park-debating/`. The development server supports live updates.
 
 ```sh
 npm run build
@@ -47,4 +47,4 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 The supplied poster is unchanged in `public/debate-poster.png`; `public/images/ai-judges.jpg` is its photograph cropped out. Each past debate's image is set by the `image` field in `src/debates.ts`. The header logo and `favicon.ico` come from the South Park Commons GitHub avatar (`public/spc-logo.jpg`). Society Book Italic and Season Sans are bundled under `public/fonts/` from the supplied local font files.
 
-`.openai/hosting.json` preserves the existing private Site identity. Publication still requires access to that Site’s source repository; the current shell cannot reach it. No public deployment is claimed.
+The site is hosted on GitHub Pages at https://jacknzheng.github.io/south-park-debating/. `.github/workflows/deploy.yml` builds, tests and publishes `dist/client` on every push to `main`. Because the site lives under `/south-park-debating/`, `vite.config.ts` sets `base`, and code that references files in `public/` prefixes them with `import.meta.env.BASE_URL`.

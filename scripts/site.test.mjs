@@ -5,7 +5,7 @@ import { debates } from '../src/debates.ts'
 import server from '../dist/server/server.js'
 
 const htmlFor = async path => {
-  const response = await server.fetch(new Request(`http://localhost${path}`))
+  const response = await server.fetch(new Request(`http://localhost/south-park-debating${path}`))
   assert.equal(response.status, 200, path)
   return response.text()
 }
@@ -18,9 +18,9 @@ test('home leads with this week, then past debates with images', async () => {
   assert.match(html, /class="editorial-grid"/)
   assert.match(html, /Should we replace human judges/)
   assert.equal((html.match(/class="cover-image"/g) || []).length, 3)
-  assert.match(html, /src="\/spc-logo.jpg"/)
-  assert.match(html, /href="\/teams"/)
-  assert.match(html, /href="\/archive#2026-10-06"/)
+  assert.match(html, /src="\/south-park-debating\/spc-logo.jpg"/)
+  assert.match(html, /href="\/south-park-debating\/teams"/)
+  assert.match(html, /href="\/south-park-debating\/archive#2026-10-06"/)
   assert.match(html, /type="module"/)
   assert.doesNotMatch(html, /Big questions|Better conversations|dna-art|invitation|#\/weeks/)
 })
@@ -50,15 +50,20 @@ test('topics page links to the Notion topics list', async () => {
 })
 
 test('unknown page returns a real 404 with a recovery link', async () => {
-  const response = await server.fetch(new Request('http://localhost/does-not-exist'))
+  const response = await server.fetch(new Request('http://localhost/south-park-debating/does-not-exist'))
   assert.equal(response.status, 404)
   assert.match(await response.text(), /Browse past debates/)
 })
 
-test('every prerendered route and its referenced assets exist', async () => {
+test('every prerendered page uses the GitHub Pages base path and its files exist', async () => {
   for (const route of ['/', '/archive', '/teams', '/topics']) {
     const html = await readFile(`dist/client${route === '/' ? '' : route}/index.html`, 'utf8')
     assert.match(html, /id="main"/)
-    for (const match of html.matchAll(/(?:src|href)="(\/(?:assets|fonts)\/[^"?]+|\/images\/[^"?]+|\/favicon\.ico|\/spc-logo\.jpg)"/g)) assert.ok((await stat(`dist/client${match[1]}`)).isFile(), match[1])
+    for (const [, url] of html.matchAll(/(?:src|href)="(\/[^"#?]*)/g)) {
+      assert.ok(url.startsWith('/south-park-debating/'), `${route}: ${url} is missing the base path`)
+      const file = url.slice('/south-park-debating'.length)
+      if (/\.\w+$/.test(file)) assert.ok((await stat(`dist/client${file}`)).isFile(), url)
+    }
   }
+  assert.ok((await stat('dist/client/404.html')).isFile())
 })

@@ -9,7 +9,7 @@ await cp('public', 'offline-preview/assets', { recursive: true })
 const interactions = `<script>
 document.querySelector('.search input')?.addEventListener('input', event => {
   const query = event.target.value.toLowerCase().trim();
-  const rows = [...document.querySelectorAll('.archive-row')];
+  const rows = [...document.querySelectorAll('.list-row')];
   for (const row of rows) row.hidden = !row.textContent.toLowerCase().includes(query);
   let empty = document.querySelector('.preview-empty');
   if (!empty) { empty = document.createElement('p'); empty.className = 'preview-empty'; empty.textContent = 'No matching debates. Try another name or motion.'; document.querySelector('.archive-list').append(empty); }
@@ -17,10 +17,10 @@ document.querySelector('.search input')?.addEventListener('input', event => {
 });
 </script>`
 for (const route of routes) {
-  let html = await readFile(`dist/client${route === '/' ? '' : route}/index.html`, 'utf8')
+  let html = (await readFile(`dist/client${route === '/' ? '' : route}/index.html`, 'utf8')).replaceAll('"/south-park-debating/', '"/')
   const cssPath = html.match(/<link[^>]+rel="stylesheet"[^>]+href="([^"]+)"[^>]*>/)?.[1]
   if (!cssPath) throw new Error(`Missing stylesheet for ${route}`)
-  const css = (await readFile(`dist/client${cssPath}`, 'utf8')).replaceAll('/fonts/', 'assets/fonts/') + '[hidden]{display:none!important}.preview-empty{padding:35px 0;color:#74726f}'
+  const css = (await readFile(`dist/client${cssPath}`, 'utf8')).replaceAll('/south-park-debating/fonts/', 'assets/fonts/') + '[hidden]{display:none!important}.preview-empty{padding:35px 0;color:#74726f}'
   html = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '')
     .replace(/<link\b[^>]*rel="(?:stylesheet|modulepreload|preload)"[^>]*>/gi, '')
     .replace(/(?:href|src)="(\/[^"#]*)"/g, (attribute, path) => attribute.replace(path, routes.includes(path) ? filename(path) : `assets${path}`))
