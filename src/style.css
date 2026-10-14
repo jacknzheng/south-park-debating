@@ -77,7 +77,7 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 .sidebar-story h3 { margin: 8px 0 }
 .story-result { font-size: var(--text-small) }
 
-/* Past debates and Teams: CFR events-style list */
+/* Past debates and leaderboard */
 html { scroll-behavior: smooth }
 .list-page { padding: 64px 0; min-height: 65vh }
 .list-page h1 { font-family: var(--sans); font-style: normal; font-size: var(--text-display); font-weight: 400; text-transform: uppercase; letter-spacing: -1px; line-height: 1 }
@@ -87,7 +87,11 @@ html { scroll-behavior: smooth }
 .list-count > p:first-child { text-transform: uppercase; letter-spacing: .08em }
 .search input { width: 255px; padding: 8px 0; border: 0; border-bottom: 1px solid #a3a19c; border-radius: 0; background: none; font-size: var(--text-small) }
 .list-row { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px }
-.team-row { grid-template-columns: 200px minmax(0, 1fr) }
+.leaderboard-table { width: 100%; border-collapse: collapse; margin-top: 56px; text-align: left; font-variant-numeric: tabular-nums }
+.leaderboard-table thead th { padding: 0 16px 16px 0; border-bottom: 1px solid var(--ink); font-size: var(--text-small); font-weight: 400; text-transform: uppercase; letter-spacing: .08em }
+.leaderboard-table tbody th, .leaderboard-table tbody td { padding: 28px 16px 28px 0; border-bottom: 1px solid var(--line); font-size: var(--text-h2); font-weight: 400 }
+.leaderboard-table th:first-child, .leaderboard-table td:first-child { width: 15%; min-width: 64px; color: var(--muted) }
+.leaderboard-table th:last-child, .leaderboard-table td:last-child { text-align: right; padding-right: 0 }
 .list-date { color: var(--muted); font-size: var(--text-small) }
 .list-date span { display: block }
 .tag { display: inline-block; border: 1px solid var(--line); padding: 2px 8px; margin-bottom: 16px; font-size: var(--text-tiny); text-transform: uppercase; letter-spacing: .06em }
@@ -132,7 +136,6 @@ html { scroll-behavior: smooth }
   .feature-caption { grid-template-columns: 1fr; gap: 20px }
   .feature-result { padding-top: 0 }
   .list-row { grid-template-columns: 150px minmax(0, 1fr) 220px; gap: 24px }
-  .team-row { grid-template-columns: 150px minmax(0, 1fr) }
 }
 
 /* Phone: single column */
@@ -143,7 +146,7 @@ html { scroll-behavior: smooth }
   .wordmark { gap: 14px }
   .wordmark img { width: 40px; height: 40px }
   .wordmark span { padding-left: 14px }
-  .site-header nav { gap: 24px; margin-top: 16px; padding-bottom: 8px }
+  .site-header nav { gap: 16px; flex-wrap: wrap; margin-top: 16px; padding-bottom: 8px }
   .this-week { padding: 64px 0 56px }
   .editorial-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 24px }
   .debate-sidebar { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px }
@@ -154,7 +157,8 @@ html { scroll-behavior: smooth }
   .search input { width: 100% }
   .poll-result { grid-template-columns: 1fr auto; gap: 8px 16px }
   .poll-bar { grid-column: 1 / -1; grid-row: 2 }
-  .list-row, .team-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0 }
+  .list-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0 }
+  .leaderboard-table { margin-top: 32px }
   .list-row .cover-image { order: -1 }
   .list-date span { display: inline; margin-left: 8px }
 }

@@ -2,7 +2,7 @@ import { cp, mkdir, readFile, writeFile } from 'node:fs/promises'
 
 // Export the actual prerendered Start HTML for review where servers are blocked.
 // This is a design snapshot; the source application uses React and Start routing.
-const routes = ['/', '/archive', '/teams', '/topics']
+const routes = ['/', '/archive', '/leaderboard', '/teams', '/topics']
 const filename = route => route === '/' ? 'index.html' : `${route.slice(1)}.html`
 await mkdir('offline-preview', { recursive: true })
 await cp('public', 'offline-preview/assets', { recursive: true })

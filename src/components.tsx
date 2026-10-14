@@ -8,7 +8,7 @@ export function Header() {
     </Link>
     <nav aria-label="Main navigation">
       <Link to="/" activeOptions={{ exact: true }}>Home</Link>
-      <Link to="/teams">Teams</Link>
+      <Link to="/leaderboard">Leaderboard</Link>
       <Link to="/archive">Past debates</Link>
       <Link to="/topics">Topics</Link>
     </nav>

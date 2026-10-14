@@ -72,8 +72,8 @@ export const debates: Debate[] = [
     id: '2026-09-15',
     title: 'This house would legally require individuals and organizations to disclose when their messages, emails, or calls are AI-generated.',
     shortTitle: 'Should AI have to introduce itself?', date: '2026-09-15', dateLabel: 'September 15, 2026',
-    category: 'AI & communication', status: 'past', image: 'images/ai-disclosure.jpg', format: '3v3',
+    category: 'AI & communication', status: 'past', image: 'images/ai-disclosure.jpg',
     description: 'The house debated mandatory AI disclosure in everyday communication, from messages and emails to calls.',
-    result: 'Opposition won', winners: ['Sam Miserendino', 'Allan Fang', 'Aaquib Syed'], participants: ['Jack Zheng', 'Sam Miserendino'], judges: ['Jeffrey Cheng'],
+    result: 'Opposition won', winners: ['Sam Miserendino', 'Albert Su', 'Aaquib Syed'], participants: ['Jack Zheng', 'Sam Miserendino'], judges: ['Jeffrey Cheng'],
   },
 ];

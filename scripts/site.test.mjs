@@ -2,6 +2,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile, stat } from 'node:fs/promises'
 import { debates, poll } from '../src/debates.ts'
+import { getLeaderboard } from '../src/leaderboard.ts'
 import server from '../dist/server/server.js'
 
 const htmlFor = async path => {
@@ -21,24 +22,52 @@ test('home leads with this week, then past debates with images', async () => {
   assert.match(html, /Judges<\/dt>/)
   assert.equal((html.match(/class="cover-image"/g) || []).length, 4)
   assert.match(html, /src="\/south-park-debating\/spc-logo.jpg"/)
-  assert.match(html, /href="\/south-park-debating\/teams"/)
+  assert.match(html, /href="\/south-park-debating\/leaderboard"/)
   assert.match(html, /href="\/south-park-debating\/archive#2026-10-13"/)
   assert.match(html, /type="module"/)
   assert.doesNotMatch(html, /Big questions|Better conversations|dna-art|invitation|#\/weeks/)
 })
 
-test('teams page shows next week\'s debate and says teams are not picked yet', async () => {
-  const html = await htmlFor('/teams')
-  assert.match(html, /October 20/)
-  assert.match(html, /Topic up for vote/)
-  assert.match(html, /Teams haven’t been picked yet/)
+test('leaderboard totals individual wins and repeats places for ties', async () => {
+  const expected = [
+    { name: 'Aaquib Syed', wins: 2, place: 1 },
+    { name: 'Allan Fang', wins: 2, place: 1 },
+    { name: 'Sam Miserendino', wins: 2, place: 1 },
+    { name: 'Albert Su', wins: 1, place: 4 },
+    { name: 'Jack Zheng', wins: 1, place: 4 },
+    { name: 'Jeremy Ornstein', wins: 1, place: 4 },
+    { name: 'Karina Qian', wins: 1, place: 4 },
+    { name: 'Seth Morton', wins: 1, place: 4 },
+  ]
+  assert.deepEqual(getLeaderboard(debates), expected)
+  for (const route of ['/leaderboard', '/teams']) {
+    const html = await htmlFor(route)
+    assert.match(html, /<h1>Leaderboard<\/h1>/)
+    const rows = [...html.matchAll(/<tr><td>(\d+)\.<\/td><th scope="row">([^<]+)<\/th><td>(\d+)<\/td><\/tr>/g)]
+      .map(([, place, name, wins]) => ({ name, wins: Number(wins), place: Number(place) }))
+    assert.deepEqual(rows, expected)
+  }
+})
+
+test('only recorded past wins count, once per person per week', () => {
+  const week = debates[1]
+  assert.deepEqual(getLeaderboard([
+    { ...week, winners: ['Alex', 'Alex', 'Blair'] },
+    { ...week, id: 'another-week', winners: ['Blair'] },
+    { ...week, status: 'upcoming', winners: ['Alex', 'Casey'] },
+    { ...week, winners: undefined, participants: ['Casey'] },
+  ]), [
+    { name: 'Blair', wins: 2, place: 1 },
+    { name: 'Alex', wins: 1, place: 2 },
+  ])
+  assert.deepEqual(getLeaderboard([]), [])
 })
 
 test('past debates page lists all four with dates, results and images', async () => {
   const html = await htmlFor('/archive')
   assert.equal((html.match(/class="list-row"/g) || []).length, 4)
   for (const id of ['2026-10-13', '2026-10-06', '2026-09-22', '2026-09-15']) assert.match(html, new RegExp(`id="${id}"`))
-  for (const text of ['Opposition won', 'Seth Morton', 'Karina Qian', 'Judges: Sam Miserendino, Laura Bocek, Jack Zheng', 'September 22, 2026', '3v3']) assert.ok(html.includes(text), text)
+  for (const text of ['Opposition won', 'Seth Morton', 'Karina Qian', 'Judges: Sam Miserendino, Laura Bocek, Jack Zheng', 'September 22, 2026']) assert.ok(html.includes(text), text)
   assert.equal((html.match(/class="cover-image"/g) || []).length, 4)
   assert.match(html, /type="search"/)
 })
@@ -59,7 +88,7 @@ test('unknown page returns a real 404 with a recovery link', async () => {
 })
 
 test('every prerendered page uses the GitHub Pages base path and its files exist', async () => {
-  for (const route of ['/', '/archive', '/teams', '/topics']) {
+  for (const route of ['/', '/archive', '/leaderboard', '/teams', '/topics']) {
     const html = await readFile(`dist/client${route === '/' ? '' : route}/index.html`, 'utf8')
     assert.match(html, /id="main"/)
     for (const [, url] of html.matchAll(/(?:src|href)="(\/[^"#?]*)/g)) {

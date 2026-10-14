@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchiveRouteImport } from './routes/archive'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as TeamsRouteImport } from './routes/teams'
 import { Route as TopicsRouteImport } from './routes/topics'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const ArchiveRoute = ArchiveRouteImport.update({
   id: '/archive',
   path: '/archive',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TeamsRoute = TeamsRouteImport.update({
@@ -38,12 +44,14 @@ const TopicsRoute = TopicsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/archive': typeof ArchiveRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/teams': typeof TeamsRoute
   '/topics': typeof TopicsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/archive': typeof ArchiveRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/teams': typeof TeamsRoute
   '/topics': typeof TopicsRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/archive': typeof ArchiveRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/teams': typeof TeamsRoute
   '/topics': typeof TopicsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/archive' | '/teams' | '/topics'
+  fullPaths: '/' | '/archive' | '/leaderboard' | '/teams' | '/topics'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/archive' | '/teams' | '/topics'
-  id: '__root__' | '/' | '/archive' | '/teams' | '/topics'
+  to: '/' | '/archive' | '/leaderboard' | '/teams' | '/topics'
+  id: '__root__' | '/' | '/archive' | '/leaderboard' | '/teams' | '/topics'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchiveRoute: typeof ArchiveRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   TeamsRoute: typeof TeamsRoute
   TopicsRoute: typeof TopicsRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/archive'
       fullPath: '/archive'
       preLoaderRoute: typeof ArchiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/teams': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchiveRoute: ArchiveRoute,
+  LeaderboardRoute: LeaderboardRoute,
   TeamsRoute: TeamsRoute,
   TopicsRoute: TopicsRoute,
 }

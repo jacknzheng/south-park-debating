@@ -6,7 +6,7 @@ import server from '../dist/server/server.js'
 // The generated HTML retains Start's client scripts and hydration data.
 // Routes are requested under the GitHub Pages base path (see vite.config.ts) and written without it.
 const base = '/south-park-debating'
-const routes = ['/', '/archive', '/teams', '/topics']
+const routes = ['/', '/archive', '/leaderboard', '/teams', '/topics']
 for (const route of routes) {
   const response = await server.fetch(new Request(`http://localhost${base}${route}`))
   if (response.status !== 200) throw new Error(`Prerender failed for ${route}: ${response.status}`)
