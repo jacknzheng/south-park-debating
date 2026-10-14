@@ -34,7 +34,7 @@ Edit `src/debates.ts`. Add the newest entry first. Dates, teams, results, and th
 
 ## Topic poll
 
-Topics and the poll's week live in `poll` in `src/debates.ts`. Votes are stored in Supabase; a cookie (`voted_<week>`) stops a browser voting twice and unlocks the results. For a new poll, change `poll.week` and `poll.topics`.
+Topics and the poll's week live in `poll` in `src/debates.ts`. Each visitor picks up to two topics (one row per topic). Votes are stored in Supabase; a cookie (`voted_<week>`) stops a browser voting twice and unlocks the results. For a new poll, change `poll.week` and `poll.topics`.
 
 The site needs two values, in `.env` locally and as GitHub repository **variables** for the deploy:
 

@@ -100,6 +100,7 @@ html { scroll-behavior: smooth }
 .poll { list-style: none; padding: 0; margin: 0 }
 .poll-option { display: flex; align-items: center; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--line); font-size: var(--text-h2); cursor: pointer }
 .poll-option input { width: 20px; height: 20px; accent-color: var(--ink) }
+.poll-option:has(input:disabled) { color: var(--muted); cursor: default }
 .poll .pill-button { border: 0; cursor: pointer }
 .poll .pill-button:disabled { opacity: .35; cursor: default }
 .poll > .list-meta { margin-top: 16px }

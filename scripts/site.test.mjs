@@ -46,7 +46,7 @@ test('past debates page lists all four with dates, results and images', async ()
 test('topics page shows the poll and links to the Notion topics list', async () => {
   const html = await htmlFor('/topics')
   for (const topic of poll.topics) assert.ok(html.includes(topic.replace('&', '&amp;')), topic)
-  assert.equal((html.match(/type="radio"/g) || []).length, 6)
+  assert.equal((html.match(/type="checkbox"/g) || []).length, 6)
   assert.match(html, /Tuesday, October 20/)
   assert.match(html, /href="https:\/\/app\.notion\.com\/p\/jacknzheng\/Topics-by-week-/)
   assert.match(html, /target="_blank"/)

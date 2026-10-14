@@ -14,7 +14,7 @@ const votedCookie = `voted_${poll.week}`
 
 function Topics() {
   const nextDebate = debates.find(debate => debate.id === poll.week)
-  const [choice, setChoice] = useState('')
+  const [choices, setChoices] = useState<string[]>([])
   const [voted, setVoted] = useState(false)
   const [counts, setCounts] = useState<Record<string, number> | null>(null)
   const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
@@ -36,7 +36,7 @@ function Topics() {
     const response = await fetch(`${supabaseUrl}/rest/v1/topic_votes`, {
       method: 'POST',
       headers: { apikey: supabaseKey, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-      body: JSON.stringify({ week: poll.week, topic: choice }),
+      body: JSON.stringify(choices.map(topic => ({ week: poll.week, topic }))),
     }).catch(() => null)
     if (!response?.ok) return setStatus('error')
     document.cookie = `${votedCookie}=1; max-age=${60 * 60 * 24 * 60}; path=${import.meta.env.BASE_URL}; SameSite=Lax`
@@ -50,14 +50,14 @@ function Topics() {
   return <main id="main" className="list-page">
     <h1>Topics</h1>
     <p className="list-intro">Vote on next week’s topic<span>{nextDebate?.dateLabel}</span></p>
-    <div className="list-count"><p>{poll.topics.length} topics</p><p className="list-meta">{voted ? `${total} votes so far` : 'One vote each. Results show after you vote.'}</p></div>
+    <div className="list-count"><p>{poll.topics.length} topics</p><p className="list-meta">{voted ? `${total} votes so far` : 'Pick up to two. Results show after you vote.'}</p></div>
 
     {!voted && <form className="poll" onSubmit={vote}>
       {poll.topics.map(topic => <label className="poll-option" key={topic}>
-        <input type="radio" name="topic" value={topic} checked={choice === topic} onChange={() => setChoice(topic)} required />
+        <input type="checkbox" name="topic" value={topic} checked={choices.includes(topic)} disabled={choices.length === 2 && !choices.includes(topic)} onChange={() => setChoices(choices.includes(topic) ? choices.filter(c => c !== topic) : [...choices, topic])} />
         <span>{topic}</span>
       </label>)}
-      <button className="pill-button" disabled={!choice || status === 'sending' || !supabaseUrl}>{status === 'sending' ? 'Sending…' : 'Vote'}</button>
+      <button className="pill-button" disabled={choices.length === 0 || status === 'sending' || !supabaseUrl}>{status === 'sending' ? 'Sending…' : 'Vote'}</button>
       {!supabaseUrl && <p className="list-meta">Voting opens soon.</p>}
       {status === 'error' && <p className="list-meta" role="alert">Your vote didn’t go through. Please try again.</p>}
     </form>}
