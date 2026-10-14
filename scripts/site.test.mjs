@@ -70,3 +70,12 @@ test('every prerendered page uses the GitHub Pages base path and its files exist
   }
   assert.ok((await stat('dist/client/404.html')).isFile())
 })
+
+// /poster.png is a permanent link used elsewhere; a failing test blocks the deploy so the last good poster stays live.
+test('poster and its white fallback are 1364x1634 PNGs', async () => {
+  for (const file of ['poster.png', 'poster-fallback.png']) {
+    const png = await readFile(`dist/client/${file}`)
+    assert.equal(png.subarray(1, 4).toString(), 'PNG', `${file} is not a PNG`)
+    assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], [1364, 1634], `${file} must be 1364x1634`)
+  }
+})
