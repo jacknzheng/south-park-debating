@@ -60,7 +60,7 @@ export const debates: Debate[] = [
     shortTitle: 'Should the public get to pause AI?', date: '2026-09-22', dateLabel: 'September 22, 2026',
     category: 'AI & democracy', status: 'past', image: 'images/referendum.jpg',
     description: 'Who gets to decide how fast AI moves? The house considered regular public votes and an 80% threshold for a development pause.',
-    result: 'Winners', winners: ['Jack Zheng', 'Jeremy Ornstein'],
+    result: 'Opposition won', winners: ['Jack Zheng', 'Jeremy Ornstein'],
   },
   {
     id: '2026-09-15',
@@ -68,6 +68,6 @@ export const debates: Debate[] = [
     shortTitle: 'Should AI have to introduce itself?', date: '2026-09-15', dateLabel: 'September 15, 2026',
     category: 'AI & communication', status: 'past', image: 'images/ai-disclosure.jpg', format: '3v3',
     description: 'The house debated mandatory AI disclosure in everyday communication, from messages and emails to calls.',
-    result: 'Winners', winners: ['Sam Miserendino', 'Allan Fang', 'Aaquib Syed'], participants: ['Jack Zheng', 'Sam Miserendino'], judges: ['Jeffrey Cheng'],
+    result: 'Opposition won', winners: ['Sam Miserendino', 'Allan Fang', 'Aaquib Syed'], participants: ['Jack Zheng', 'Sam Miserendino'], judges: ['Jeffrey Cheng'],
   },
 ];
