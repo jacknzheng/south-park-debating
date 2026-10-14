@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+preview.html
+.tanstack/
+offline-preview/
+.env

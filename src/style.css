@@ -1,0 +1,146 @@
+@font-face { font-family: Society; src: url('/fonts/society-book-italic.otf') format('opentype'); font-weight: 400; font-style: italic; font-display: swap }
+@font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-regular.woff2') format('woff2'); font-weight: 400; font-display: swap }
+@font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-semibold.ttf') format('truetype'); font-weight: 600; font-display: swap }
+
+/* Type scale: every font size on the site is one of these six. */
+:root {
+  --text-display: 56px;
+  --text-h1: 40px;
+  --text-h2: 28px;
+  --text-body: 17px;
+  --text-small: 15px;
+  --text-tiny: 13px;
+
+  --ink: #161615;
+  --muted: #74726f;
+  --line: #d8d6d2;
+  --paper: #f8f7f5;
+  --serif: Society, Georgia, serif;
+  --sans: 'Season Sans', Arial, sans-serif;
+
+  font-family: var(--sans);
+  font-size: var(--text-body);
+  color: var(--ink);
+  background: var(--paper);
+  font-synthesis: none;
+}
+
+/* Base */
+* { box-sizing: border-box }
+body { margin: 0; background: var(--paper) }
+h1, h2, h3, p, dl, dd { margin: 0 }
+h1, h2, h3 { font-family: var(--serif); font-style: italic; font-weight: 400; line-height: 1.15 }
+h1 { font-size: var(--text-h1); letter-spacing: -.3px }
+h2, h3 { font-size: var(--text-h2) }
+p { line-height: 1.5 }
+img { display: block; max-width: 100% }
+a { color: inherit; text-decoration: none }
+a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px }
+button, input, select { font: inherit; color: inherit }
+button { cursor: pointer }
+a, button, input, select { -webkit-tap-highlight-color: transparent }
+:focus-visible { outline: 2px solid #6d2928; outline-offset: 5px }
+
+.subtle { color: var(--muted); font-size: var(--text-small) }
+.label { color: var(--muted); font-size: var(--text-tiny); text-transform: uppercase; letter-spacing: .08em }
+.cover-image { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: var(--line) }
+.underlined-link { display: inline-flex; gap: 16px; font-size: var(--text-small); border-bottom: 1px solid #9a9791; padding-bottom: 4px }
+.underlined-link:hover { text-decoration: none; border-color: var(--ink) }
+.plain-list { list-style: none; padding: 0; margin: 0; line-height: 1.8 }
+
+/* Header: SPC mark | South Park Debating */
+.site-frame { max-width: 1424px; margin: 0 auto; padding: 0 40px }
+.site-header { min-height: 120px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-bottom: 1px solid var(--ink) }
+.wordmark { display: flex; align-items: center; gap: 20px; white-space: nowrap }
+.wordmark:hover { text-decoration: none }
+.wordmark img { width: 48px; height: 48px; filter: brightness(1.06) contrast(1.1); mix-blend-mode: multiply }
+.wordmark span { font-size: var(--text-h2); font-weight: 600; letter-spacing: -.3px; line-height: 1; padding: 10px 0 10px 20px; border-left: 1px solid var(--ink) }
+.site-header nav { display: flex; gap: 32px; font-size: var(--text-small) }
+.site-header nav a { padding: 10px 0 }
+.site-header nav a[data-status=active] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 8px }
+
+/* Home: this week's topic up top, then past debates */
+.front-page { padding-bottom: 64px }
+.this-week { padding: 120px 0 112px; text-align: center; border-bottom: 1px solid var(--line) }
+.this-week h1 { font-size: var(--text-display); line-height: 1.08; letter-spacing: -.6px; max-width: 1000px; margin: 16px auto 20px }
+.this-week-meta { margin-bottom: 28px }
+.editorial-grid { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 32px; padding-top: 40px }
+.feature-caption { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 32px; padding-top: 24px }
+.feature-caption h1, .feature-caption h2 { font-size: var(--text-h1); margin-top: 12px }
+.feature-result { padding-top: 32px }
+.feature-result dt { color: var(--muted); font-size: var(--text-tiny); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px }
+.feature-result dd + dt { margin-top: 24px }
+.debate-sidebar { border-left: 1px solid var(--line); padding-left: 32px }
+.sidebar-story { border-top: 1px solid var(--line); padding: 24px 0 }
+.sidebar-story:first-child { border-top: 0; padding-top: 0 }
+.sidebar-story .cover-image { margin-bottom: 16px }
+.sidebar-story h3 { margin: 8px 0 }
+.story-result { font-size: var(--text-small) }
+
+/* Past debates and Teams: CFR events-style list */
+html { scroll-behavior: smooth }
+.list-page { padding: 64px 0; min-height: 65vh }
+.list-page h1 { font-family: var(--sans); font-style: normal; font-size: var(--text-display); font-weight: 400; text-transform: uppercase; letter-spacing: -1px; line-height: 1 }
+.list-intro { font-size: var(--text-h2); line-height: 1.25; max-width: 760px; margin-top: 24px }
+.list-intro span { display: block; color: var(--muted); font-size: var(--text-small); margin-top: 8px }
+.list-count { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 56px; padding-bottom: 16px; border-bottom: 1px solid var(--ink) }
+.list-count > p:first-child { text-transform: uppercase; letter-spacing: .08em }
+.search input { width: 255px; padding: 8px 0; border: 0; border-bottom: 1px solid #a3a19c; border-radius: 0; background: none; font-size: var(--text-small) }
+.list-row { display: grid; grid-template-columns: 200px minmax(0, 1fr) 320px; gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 24px }
+.team-row { grid-template-columns: 200px minmax(0, 1fr) }
+.list-date { color: var(--muted); font-size: var(--text-small) }
+.list-date span { display: block }
+.tag { display: inline-block; border: 1px solid var(--line); padding: 2px 8px; margin-bottom: 16px; font-size: var(--text-tiny); text-transform: uppercase; letter-spacing: .06em }
+.list-row h2 { font-family: var(--sans); font-style: normal; font-size: var(--text-h2); line-height: 1.2; letter-spacing: -.3px; margin-bottom: 12px; max-width: 760px }
+.list-meta { color: var(--muted); font-size: var(--text-small) }
+.list-meta span { display: block }
+.pill-button { display: inline-flex; gap: 12px; margin-top: 40px; padding: 14px 28px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: var(--text-body) }
+.pill-button:hover { text-decoration: none; opacity: .85 }
+.empty-state { padding: 48px 0 }
+.empty-state button { border: 0; border-bottom: 1px solid var(--ink); background: none; padding: 0 0 3px; margin-top: 16px }
+
+/* Misc */
+.not-found { padding: 72px 0 }
+.not-found h1 { margin-bottom: 28px }
+.not-found a { text-decoration: underline }
+.skip-link { position: absolute; left: 20px; top: -60px; background: white; padding: 12px; z-index: 10 }
+.skip-link:focus { top: 10px }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap }
+
+/* Tablet: shrink the scale, keep the layout */
+@media (max-width: 1050px) {
+  :root { --text-display: 46px; --text-h1: 34px; --text-h2: 24px }
+  .site-frame { padding-inline: 28px }
+  .site-header { gap: 24px }
+  .site-header nav { gap: 24px }
+  .editorial-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px }
+  .debate-sidebar { padding-left: 24px }
+  .feature-caption { grid-template-columns: 1fr; gap: 20px }
+  .feature-result { padding-top: 0 }
+  .list-row { grid-template-columns: 150px minmax(0, 1fr) 220px; gap: 24px }
+  .team-row { grid-template-columns: 150px minmax(0, 1fr) }
+}
+
+/* Phone: single column */
+@media (max-width: 700px) {
+  :root { --text-display: 36px; --text-h1: 30px; --text-h2: 22px }
+  .site-frame { padding-inline: 16px }
+  .site-header { display: block; padding-top: 24px; min-height: 0 }
+  .wordmark { gap: 14px }
+  .wordmark img { width: 40px; height: 40px }
+  .wordmark span { padding-left: 14px }
+  .site-header nav { gap: 24px; margin-top: 16px; padding-bottom: 8px }
+  .this-week { padding: 64px 0 56px }
+  .editorial-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 24px }
+  .debate-sidebar { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px }
+  .list-page { padding: 40px 0 }
+  .list-count { display: block; margin-top: 32px }
+  .list-count .list-meta { margin-top: 8px }
+  .search { display: block; margin-top: 16px }
+  .search input { width: 100% }
+  .list-row, .team-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0 }
+  .list-row .cover-image { order: -1 }
+  .list-date span { display: inline; margin-left: 8px }
+}
+
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important } }
