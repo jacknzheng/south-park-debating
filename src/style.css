@@ -4,9 +4,8 @@
 @font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-medium.woff2') format('woff2'); font-weight: 500; font-display: swap }
 @font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-semibold.ttf') format('truetype'); font-weight: 600; font-display: swap }
 
-/* Type scale: every font size on the site is one of these six. */
+/* Type scale. The home page and page headings also use fluid sizes copied from cfr.org/education. */
 :root {
-  --text-display: 56px;
   --text-h1: 40px;
   --text-h2: 28px;
   --text-body: 17px;
@@ -93,9 +92,8 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 /* Past debates and leaderboard */
 html { scroll-behavior: smooth }
 .list-page { padding: 64px 0; min-height: 65vh }
-.list-page h1 { font-family: var(--sans); font-style: normal; font-size: var(--text-display); font-weight: 400; text-transform: uppercase; letter-spacing: -1px; line-height: 1 }
-/* Leaderboard and Past debates headings use the home hero's type */
-.list-page.serif-heading h1 { font-family: var(--serif); text-transform: none; font-size: clamp(36px, 1.044rem + 3.014vw, 63px); line-height: 1.05; letter-spacing: -.035em }
+/* Page headings use the home hero's type */
+.list-page h1 { font-style: normal; font-size: clamp(36px, 1.044rem + 3.014vw, 63px); line-height: 1.05; letter-spacing: -.035em }
 .list-intro { font-size: var(--text-h2); line-height: 1.25; max-width: 760px; margin-top: 24px }
 .list-intro span { display: block; color: var(--muted); font-size: var(--text-small); margin-top: 8px }
 .list-count { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; margin-top: 56px; padding-bottom: 16px; border-bottom: 1px solid var(--ink) }
@@ -142,7 +140,7 @@ html { scroll-behavior: smooth }
 
 /* Tablet: shrink the scale, keep the layout */
 @media (max-width: 1050px) {
-  :root { --text-display: 46px; --text-h1: 34px; --text-h2: 24px }
+  :root { --text-h1: 34px; --text-h2: 24px }
   .site-frame { padding-inline: 28px }
   .site-header { gap: 24px }
   .site-header nav { gap: 24px }
@@ -152,7 +150,7 @@ html { scroll-behavior: smooth }
 
 /* Phone: single column */
 @media (max-width: 700px) {
-  :root { --text-display: 36px; --text-h1: 30px; --text-h2: 22px }
+  :root { --text-h1: 30px; --text-h2: 22px }
   .site-frame { padding-inline: 16px }
   .site-header { display: block; padding-top: 24px; min-height: 0 }
   .wordmark { gap: 14px }

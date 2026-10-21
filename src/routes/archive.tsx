@@ -11,7 +11,7 @@ function Archive() {
   const [query, setQuery] = useState('')
   const past = debates.filter(debate => debate.status === 'past')
   const results = past.filter(debate => [debate.title, debate.dateLabel, debate.category, ...(debate.judges ?? []), ...(debate.winners ?? []), ...(debate.participants ?? [])].join(' ').toLowerCase().includes(query.trim().toLowerCase()))
-  return <main id="main" className="list-page serif-heading">
+  return <main id="main" className="list-page">
     <h1>Past debates</h1>
     <div className="list-count"><p>{past.length} debates</p><label className="search"><span className="sr-only">Search motions or debaters</span><input type="search" placeholder="Search motions or debaters" value={query} onChange={event => setQuery(event.target.value)} /></label></div>
     <div aria-live="polite">
