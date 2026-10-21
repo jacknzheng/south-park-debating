@@ -48,7 +48,7 @@ export const debates: Debate[] = [
   },
   {
     id: '2026-10-13',
-    title: 'We should permit AI assistants to use undisclosed persuasion to protect users’ long-term wellbeing',
+    title: 'THW permit AI assistants to use undisclosed persuasion to protect users’ long-term wellbeing',
     shortTitle: 'Should AI nudge you for your own good?', date: '2026-10-13', dateLabel: 'October 13, 2026',
     category: 'AI & wellbeing', status: 'past', image: 'images/ai-persuasion.jpg',
     description: 'Should an AI quietly steer you toward what is good for you, even when you have said you want something else?',
@@ -63,7 +63,7 @@ export const debates: Debate[] = [
   },
   {
     id: '2026-10-06',
-    title: 'Should we replace human judges & juries with AI, if AI proves less biased?',
+    title: 'THW replace human judges & juries with AI, if AI proves less biased.',
     shortTitle: 'Can AI deliver a fairer verdict?', date: '2026-10-06', dateLabel: 'October 6, 2026',
     category: 'AI & justice', status: 'past', image: 'images/ai-judges.jpg',
     description: 'A debate on fairness, human judgment, and the role of artificial intelligence in our courts.',
@@ -72,7 +72,7 @@ export const debates: Debate[] = [
   },
   {
     id: '2026-09-22',
-    title: 'This house would hold regular referendums to vote on pausing AI development, and do so if there is more than 80% consensus.',
+    title: 'THW hold regular referendums to vote on pausing AI development, and do so if there is more than 80% consensus.',
     shortTitle: 'Should the public get to pause AI?', date: '2026-09-22', dateLabel: 'September 22, 2026',
     category: 'AI & democracy', status: 'past', image: 'images/referendum.jpg',
     description: 'Who gets to decide how fast AI moves? The house considered regular public votes and an 80% threshold for a development pause.',
@@ -80,7 +80,7 @@ export const debates: Debate[] = [
   },
   {
     id: '2026-09-15',
-    title: 'This house would legally require individuals and organizations to disclose when their messages, emails, or calls are AI-generated.',
+    title: 'THW legally require individuals and organizations to disclose when their messages, emails, or calls are AI-generated.',
     shortTitle: 'Should AI have to introduce itself?', date: '2026-09-15', dateLabel: 'September 15, 2026',
     category: 'AI & communication', status: 'past', image: 'images/ai-disclosure.jpg',
     description: 'The house debated mandatory AI disclosure in everyday communication, from messages and emails to calls.',
