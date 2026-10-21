@@ -23,7 +23,7 @@ export interface Debate {
 // The topic poll on /topics. Votes are stored per week, so a new poll just needs a new week id.
 export const poll = {
   week: '2026-10-27',
-  topics: ['Designer babies', 'Universal basic income', 'US–China geopolitics', 'Factory farming', 'Peptides & experimental drugs', 'AI warfare & US hegemony'],
+  topics: ['Free trade vs. protectionism', 'US–China geopolitics', 'Universal basic income', 'Balance of powers', 'Elections & voting'],
 }
 
 // Newest first. Incomplete rosters are kept explicit.
@@ -38,7 +38,7 @@ export const debates: Debate[] = [
   },
   {
     id: '2026-10-20',
-    title: 'TH prefers a US-led world order to a multipolar world.',
+    title: 'THP a US-led world order to a multipolar world.',
     shortTitle: 'A US-led world order or a multipolar world?', date: '2026-10-20', dateLabel: 'October 20, 2026',
     category: 'Geopolitics', status: 'past',
     image: 'https://www.economist.com/content-assets/images/20251025_CND001.jpg',
@@ -52,7 +52,7 @@ export const debates: Debate[] = [
     shortTitle: 'Should AI nudge you for your own good?', date: '2026-10-13', dateLabel: 'October 13, 2026',
     category: 'AI & wellbeing', status: 'past', image: 'images/ai-persuasion.jpg',
     description: 'Should an AI quietly steer you toward what is good for you, even when you have said you want something else?',
-    result: 'Winners', winners: ['Aaquib Syed', 'Karina Qian', 'Allan Fang'],
+    result: 'Affirmative won', winners: ['Aaquib Syed', 'Karina Qian', 'Allan Fang'],
     judges: ['Sam Miserendino', 'Laura Bocek', 'Jack Zheng'],
     teams: [
       { name: 'Team 1', members: ['Sam Miserendino', 'Aaquib Syed', 'Allan Fang'] },

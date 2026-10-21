@@ -9,7 +9,7 @@ export const Route = createFileRoute('/leaderboard')({
 
 export function Leaderboard() {
   const standings = getLeaderboard(debates)
-  return <main id="main" className="list-page">
+  return <main id="main" className="list-page spacious">
     <h1>Leaderboard</h1>
     <p className="list-intro">Individual wins across all weeks.<span>Each recorded weekly win counts once. Tied debaters share the same place.</span></p>
     {standings.length > 0 ? <table className="leaderboard-table">

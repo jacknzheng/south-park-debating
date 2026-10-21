@@ -1,6 +1,6 @@
 # South Park Debating
 
-A TypeScript / React site built with **TanStack Start**, TanStack Router, and Vite. The design follows the supplied CFR screenshot and debate poster: this week's topic first, then image-led past debates, italic Society headlines, Season Sans body text, square sections, and thin gray dividers.
+A TypeScript / React site built with **TanStack Start**, TanStack Router, and Vite. The design follows the supplied CFR screenshot and debate poster: this week's topic first, then image-led past debates, Adobe Caslon Pro headlines (the CFR education site's serif), Season Sans body text, square sections, and thin gray dividers.
 
 ## Run
 
@@ -68,7 +68,7 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 ## Assets and hosting
 
-The supplied poster is unchanged in `public/debate-poster.png`; `public/images/ai-judges.jpg` is its photograph cropped out. Each past debate's image is set by the `image` field in `src/debates.ts`. The header logo and `favicon.ico` come from the South Park Commons GitHub avatar (`public/spc-logo.jpg`). Society Book Italic and Season Sans are bundled under `public/fonts/` from the supplied local font files.
+The supplied poster is unchanged in `public/debate-poster.png`; `public/images/ai-judges.jpg` is its photograph cropped out. Each past debate's image is set by the `image` field in `src/debates.ts`. The header logo and `favicon.ico` come from the South Park Commons GitHub avatar (`public/spc-logo.jpg`). Season Sans (regular, semibold) is bundled under `public/fonts/` from the supplied local font files. Adobe Caslon Pro (regular, italic) and Season Sans Medium were copied from cfr.org/education; Adobe Caslon Pro is a licensed Adobe font.
 
 This week's poster lives at a permanent link, https://jacknzheng.github.io/south-park-debating/poster.png, which other places embed. To update it, replace `public/poster.png` with a 1364 × 1634 PNG on white (no transparency) and push. If the file is missing or the wrong size, `npm test` fails and the deploy stops, so the last good poster stays live. `public/poster-fallback.png` is a plain white image of the same size: copy it over `poster.png` to blank the link on purpose.
 

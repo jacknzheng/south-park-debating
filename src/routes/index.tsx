@@ -5,32 +5,37 @@ export const Route = createFileRoute('/')({ component: Home })
 
 function Home() {
   const [current, lastWeek, ...older] = debates
+  const imageSrc = (image?: string) => image?.startsWith('https://') ? image : import.meta.env.BASE_URL + image
   return <main id="main" className="front-page">
     <section className="this-week" aria-labelledby="this-week-title">
-      <p className="label">Next week</p>
-      <h1 id="this-week-title"><Link to="/topics">Vote on next week’s topic</Link></h1>
+      <h1 id="this-week-title">Have a say in next week’s debating topics</h1>
       <p className="this-week-meta">{`${current.dateLabel} · ${current.time} · ${current.venue}`}</p>
-      <Link className="underlined-link" to="/topics">Cast your vote <span aria-hidden="true">→</span></Link>
+      <Link className="outline-button" to="/topics">Cast your vote</Link>
     </section>
-    <section className="editorial-grid" aria-label="Past debates">
-      <article className="featured-debate">
-        <Link to="/archive" hash={lastWeek.id} tabIndex={-1} aria-hidden="true"><img className="cover-image" src={lastWeek.image?.startsWith('https://') ? lastWeek.image : import.meta.env.BASE_URL + lastWeek.image} alt="" /></Link>
-        <div className="feature-caption">
-          <div><p className="label">{`Latest debate · ${lastWeek.dateLabel}`}</p><h2><Link to="/archive" hash={lastWeek.id}>{lastWeek.title}</Link></h2></div>
-          <dl className="feature-result">
-            <dt>{lastWeek.result}</dt><dd>{lastWeek.winners?.join(', ')}</dd>
-            <dt>{lastWeek.judges!.length > 1 ? 'Judges' : 'Judge'}</dt><dd>{lastWeek.judges!.join(', ')}</dd>
-          </dl>
-        </div>
-      </article>
-      <aside className="debate-sidebar" aria-label="Earlier debates">
-        {older.map(debate => <article className="sidebar-story" key={debate.id}>
-          <Link to="/archive" hash={debate.id} tabIndex={-1} aria-hidden="true"><img className="cover-image" src={debate.image?.startsWith('https://') ? debate.image : import.meta.env.BASE_URL + debate.image} alt="" /></Link>
-          <p className="label">{debate.dateLabel}{debate.format ? ` · ${debate.format}` : ''}</p>
-          <h3><Link to="/archive" hash={debate.id}>{debate.title}</Link></h3>
-          <p className="story-result">{debate.winners ? `${debate.result}: ${debate.winners.join(', ')}` : debate.result}</p>
-        </article>)}
-      </aside>
+    <section className="featured" aria-labelledby="featured-title">
+      <h2 id="featured-title" className="featured-title">Featured debate topics</h2>
+      <div className="featured-grid">
+        {/* Each title link stretches over its whole article, so the image is clickable too. */}
+        <article className="featured-main">
+          <img className="cover-image" src={imageSrc(lastWeek.image)} alt="" />
+          <div className="featured-main-heading">
+            <h3><Link to="/archive" hash={lastWeek.id}>{lastWeek.title}</Link></h3>
+            <p className="featured-category">{lastWeek.category}</p>
+          </div>
+          <p className="featured-description">{lastWeek.description}</p>
+        </article>
+        <ul className="featured-list">
+          {older.slice(0, 4).map(debate => <li key={debate.id}>
+            <article className="featured-item">
+              <div>
+                <h3><Link to="/archive" hash={debate.id}>{debate.shortTitle}</Link></h3>
+                <p className="featured-category">{debate.category}</p>
+              </div>
+              <img className="cover-image" src={imageSrc(debate.image)} alt="" />
+            </article>
+          </li>)}
+        </ul>
+      </div>
     </section>
   </main>
 }

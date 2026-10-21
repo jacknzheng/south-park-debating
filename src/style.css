@@ -1,5 +1,7 @@
-@font-face { font-family: Society; src: url('/fonts/society-book-italic.otf') format('opentype'); font-weight: 400; font-style: italic; font-display: swap }
+@font-face { font-family: 'Adobe Caslon Pro'; src: url('/fonts/acaslonpro-regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap }
+@font-face { font-family: 'Adobe Caslon Pro'; src: url('/fonts/acaslonpro-italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap }
 @font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-regular.woff2') format('woff2'); font-weight: 400; font-display: swap }
+@font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-medium.woff2') format('woff2'); font-weight: 500; font-display: swap }
 @font-face { font-family: 'Season Sans'; src: url('/fonts/season-sans-semibold.ttf') format('truetype'); font-weight: 600; font-display: swap }
 
 /* Type scale: every font size on the site is one of these six. */
@@ -15,7 +17,8 @@
   --muted: #74726f;
   --line: #d8d6d2;
   --paper: #f8f7f5;
-  --serif: Society, Georgia, serif;
+  --accent: #8f3602;
+  --serif: 'Adobe Caslon Pro', Georgia, serif;
   --sans: 'Season Sans', Arial, sans-serif;
 
   font-family: var(--sans);
@@ -48,38 +51,47 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 .underlined-link:hover { text-decoration: none; border-color: var(--ink) }
 .plain-list { list-style: none; padding: 0; margin: 0; line-height: 1.8 }
 
-/* Header: SPC mark | South Park Debating */
+/* Header: SPC mark, South Park Debating */
 .site-frame { max-width: 1424px; margin: 0 auto; padding: 0 40px }
 .site-header { min-height: 120px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-bottom: 1px solid var(--ink) }
 .wordmark { display: flex; align-items: center; gap: 20px; white-space: nowrap }
 .wordmark:hover { text-decoration: none }
 .wordmark img { width: 48px; height: 48px; filter: brightness(1.06) contrast(1.1); mix-blend-mode: multiply }
-.wordmark span { font-size: var(--text-h2); font-weight: 600; letter-spacing: -.3px; line-height: 1; padding: 10px 0 10px 20px; border-left: 1px solid var(--ink) }
+.wordmark span { font-size: var(--text-h2); font-weight: 600; letter-spacing: -.3px; line-height: 1; padding: 10px 0 }
 .site-header nav { display: flex; gap: 32px; font-size: var(--text-small) }
 .site-header nav a { padding: 10px 0 }
 .site-header nav a[data-status=active] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 8px }
 
-/* Home: this week's topic up top, then past debates */
+/* Home: this week's vote up top, then featured debates (sizes follow cfr.org/education) */
 .front-page { padding-bottom: 64px }
-.this-week { padding: 120px 0 112px; text-align: center; border-bottom: 1px solid var(--line) }
-.this-week h1 { font-size: var(--text-display); line-height: 1.08; letter-spacing: -.6px; max-width: 1000px; margin: 16px auto 20px }
-.this-week-meta { margin-bottom: 28px }
-.editorial-grid { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 32px; padding-top: 40px }
-.feature-caption { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 32px; padding-top: 24px }
-.feature-caption h1, .feature-caption h2 { font-size: var(--text-h1); margin-top: 12px }
-.feature-result { padding-top: 32px }
-.feature-result dt { color: var(--muted); font-size: var(--text-tiny); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px }
-.feature-result dd + dt { margin-top: 24px }
-.debate-sidebar { border-left: 1px solid var(--line); padding-left: 32px }
-.sidebar-story { border-top: 1px solid var(--line); padding: 24px 0 }
-.sidebar-story:first-child { border-top: 0; padding-top: 0 }
-.sidebar-story .cover-image { margin-bottom: 16px }
-.sidebar-story h3 { margin: 8px 0 }
-.story-result { font-size: var(--text-small) }
+.this-week { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 120px 0 112px; text-align: center }
+.this-week h1 { font-style: normal; font-size: clamp(36px, 1.044rem + 3.014vw, 63px); line-height: 1.05; letter-spacing: -.035em; max-width: 900px; text-wrap: pretty }
+.this-week-meta { font-size: clamp(21px, 1.001rem + .78vw, 28px); line-height: 1.25; letter-spacing: .01em }
+.outline-button { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 20px 24px; border: 1px solid var(--ink); border-radius: 32px; font-size: 14px; line-height: 1; letter-spacing: .02em; transition: color .15s, background-color .15s, border-color .15s }
+.outline-button:hover { text-decoration: none; color: var(--accent); border-color: var(--accent); background: #e9e6e3 }
+.featured-title { font-family: var(--sans); font-style: normal; font-size: 14px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; line-height: 1.25; padding-bottom: 16px; border-bottom: 1px solid var(--line) }
+.featured-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px; padding-top: 20px }
+.featured-main { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 24px; height: fit-content }
+.featured-main .cover-image { grid-column: 1 / -1; aspect-ratio: 3 / 2 }
+.featured-main-heading { grid-column: span 2; display: flex; flex-direction: column; gap: 4px }
+.featured-main h3 { font-size: clamp(28px, .857rem + 2.232vw, 48px); line-height: 1.1; letter-spacing: -.035em; text-wrap: pretty }
+.featured-description { font-size: clamp(16px, .792rem + .521vw, 18px); line-height: 1.25; letter-spacing: .02em; text-wrap: pretty }
+.featured-category { color: var(--muted); font-size: 12px; line-height: 1.25; letter-spacing: .02em }
+.featured-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-content: start }
+.featured-list li { padding: 20px 0; border-top: 1px solid var(--line) }
+.featured-list li:nth-child(-n+2) { border-top: 0; padding-top: 0 }
+.featured-item { position: relative; display: flex; justify-content: space-between; gap: 16px }
+.featured-item > div { display: flex; flex-direction: column; gap: 4px }
+.featured-item h3 { font-size: clamp(18px, .812rem + .783vw, 21px); line-height: 1.15; letter-spacing: -.015em; text-wrap: pretty }
+.featured-item .cover-image { width: 80px; flex-shrink: 0; aspect-ratio: 1 }
+.featured h3 a { transition: color .15s }
+.featured h3 a:hover { text-decoration: none; color: var(--accent) }
+.featured h3 a::before { content: ''; position: absolute; inset: 0 }
 
 /* Past debates and leaderboard */
 html { scroll-behavior: smooth }
 .list-page { padding: 64px 0; min-height: 65vh }
+.list-page.spacious { padding-top: 208px }
 .list-page h1 { font-family: var(--sans); font-style: normal; font-size: var(--text-display); font-weight: 400; text-transform: uppercase; letter-spacing: -1px; line-height: 1 }
 .list-intro { font-size: var(--text-h2); line-height: 1.25; max-width: 760px; margin-top: 24px }
 .list-intro span { display: block; color: var(--muted); font-size: var(--text-small); margin-top: 8px }
@@ -131,10 +143,7 @@ html { scroll-behavior: smooth }
   .site-frame { padding-inline: 28px }
   .site-header { gap: 24px }
   .site-header nav { gap: 24px }
-  .editorial-grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px }
-  .debate-sidebar { padding-left: 24px }
-  .feature-caption { grid-template-columns: 1fr; gap: 20px }
-  .feature-result { padding-top: 0 }
+  .featured-grid { grid-template-columns: 1fr }
   .list-row { grid-template-columns: 150px minmax(0, 1fr) 220px; gap: 24px }
 }
 
@@ -145,12 +154,14 @@ html { scroll-behavior: smooth }
   .site-header { display: block; padding-top: 24px; min-height: 0 }
   .wordmark { gap: 14px }
   .wordmark img { width: 40px; height: 40px }
-  .wordmark span { padding-left: 14px }
   .site-header nav { gap: 16px; flex-wrap: wrap; margin-top: 16px; padding-bottom: 8px }
   .this-week { padding: 64px 0 56px }
-  .editorial-grid { grid-template-columns: 1fr; gap: 32px; padding-top: 24px }
-  .debate-sidebar { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px }
+  .featured-main { grid-template-columns: 1fr; gap: 16px }
+  .featured-main-heading { grid-column: auto }
+  .featured-list { display: block }
+  .featured-list li:nth-child(-n+2) { border-top: 1px solid var(--line); padding-top: 20px }
   .list-page { padding: 40px 0 }
+  .list-page.spacious { padding-top: 112px }
   .list-count { display: block; margin-top: 32px }
   .list-count .list-meta { margin-top: 8px }
   .search { display: block; margin-top: 16px }
