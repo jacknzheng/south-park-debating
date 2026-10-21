@@ -16,14 +16,16 @@ test('home leads with this week, then past debates with images', async () => {
   assert.match(html, /class="this-week"/)
   assert.match(html, /Vote on next week’s topic/)
   assert.match(html, /href="\/south-park-debating\/topics"/)
-  assert.match(html, /Tuesday, October 20 · 6:00pm · South Park Commons/)
+  assert.match(html, /Tuesday, October 27 · 6:00pm · South Park Commons/)
   assert.match(html, /class="editorial-grid"/)
   assert.match(html, /undisclosed persuasion/)
-  assert.match(html, /Judges<\/dt>/)
-  assert.equal((html.match(/class="cover-image"/g) || []).length, 4)
+  assert.match(html, /Judge<\/dt><dd>Karina Qian/)
+  assert.match(html, /Affirmative won<\/dt><dd>Laura Bocek, Akshit Tyagi, Ryan Tsang/)
+  assert.equal((html.match(/class="cover-image"/g) || []).length, 5)
   assert.match(html, /src="\/south-park-debating\/spc-logo.jpg"/)
   assert.match(html, /href="\/south-park-debating\/leaderboard"/)
-  assert.match(html, /href="\/south-park-debating\/archive#2026-10-13"/)
+  assert.match(html, /href="\/south-park-debating\/archive#2026-10-20"/)
+  assert.ok(html.includes('src="https://www.economist.com/content-assets/images/20251025_CND001.jpg"'))
   assert.match(html, /type="module"/)
   assert.doesNotMatch(html, /Big questions|Better conversations|dna-art|invitation|#\/weeks/)
 })
@@ -33,10 +35,13 @@ test('leaderboard totals individual wins and repeats places for ties', async () 
     { name: 'Aaquib Syed', wins: 2, place: 1 },
     { name: 'Allan Fang', wins: 2, place: 1 },
     { name: 'Sam Miserendino', wins: 2, place: 1 },
+    { name: 'Akshit Tyagi', wins: 1, place: 4 },
     { name: 'Albert Su', wins: 1, place: 4 },
     { name: 'Jack Zheng', wins: 1, place: 4 },
     { name: 'Jeremy Ornstein', wins: 1, place: 4 },
     { name: 'Karina Qian', wins: 1, place: 4 },
+    { name: 'Laura Bocek', wins: 1, place: 4 },
+    { name: 'Ryan Tsang', wins: 1, place: 4 },
     { name: 'Seth Morton', wins: 1, place: 4 },
   ]
   assert.deepEqual(getLeaderboard(debates), expected)
@@ -63,12 +68,16 @@ test('only recorded past wins count, once per person per week', () => {
   assert.deepEqual(getLeaderboard([]), [])
 })
 
-test('past debates page lists all four with dates, results and images', async () => {
+test('past debates page lists all five with dates, results and images', async () => {
   const html = await htmlFor('/archive')
-  assert.equal((html.match(/class="list-row"/g) || []).length, 4)
-  for (const id of ['2026-10-13', '2026-10-06', '2026-09-22', '2026-09-15']) assert.match(html, new RegExp(`id="${id}"`))
+  assert.equal((html.match(/class="list-row"/g) || []).length, 5)
+  for (const id of ['2026-10-20', '2026-10-13', '2026-10-06', '2026-09-22', '2026-09-15']) assert.match(html, new RegExp(`id="${id}"`))
+  assert.ok(html.includes('TH prefers a US-led world order to a multipolar world.'))
+  assert.ok(html.includes('Affirmative won: Laura Bocek, Akshit Tyagi, Ryan Tsang'))
+  assert.ok(html.includes('Judge: Karina Qian'))
+  assert.ok(html.includes('src="https://www.economist.com/content-assets/images/20251025_CND001.jpg"'))
   for (const text of ['Opposition won', 'Seth Morton', 'Karina Qian', 'Judges: Sam Miserendino, Laura Bocek, Jack Zheng', 'September 22, 2026']) assert.ok(html.includes(text), text)
-  assert.equal((html.match(/class="cover-image"/g) || []).length, 4)
+  assert.equal((html.match(/class="cover-image"/g) || []).length, 5)
   assert.match(html, /type="search"/)
 })
 
@@ -76,7 +85,7 @@ test('topics page shows the poll and links to the Notion topics list', async () 
   const html = await htmlFor('/topics')
   for (const topic of poll.topics) assert.ok(html.includes(topic.replace('&', '&amp;')), topic)
   assert.equal((html.match(/type="checkbox"/g) || []).length, 6)
-  assert.match(html, /Tuesday, October 20/)
+  assert.match(html, /Tuesday, October 27/)
   assert.match(html, /href="https:\/\/app\.notion\.com\/p\/jacknzheng\/Topics-by-week-/)
   assert.match(html, /target="_blank"/)
 })

@@ -22,7 +22,7 @@ function Archive() {
           <h2>{debate.title}</h2>
           <p className="list-meta">{debate.winners ? `${debate.result}: ${debate.winners.join(', ')}` : debate.result}{debate.judges && <span>{`${debate.judges.length > 1 ? 'Judges' : 'Judge'}: ${debate.judges.join(', ')}`}</span>}</p>
         </div>
-        {debate.image && <img className="cover-image" src={import.meta.env.BASE_URL + debate.image} alt="" />}
+        {debate.image && <img className="cover-image" src={debate.image.startsWith('https://') ? debate.image : import.meta.env.BASE_URL + debate.image} alt="" />}
       </article>)}
       {results.length === 0 && <div className="empty-state"><p>No debates match “{query}”.</p><button onClick={() => setQuery('')}>Clear search</button></div>}
     </div>

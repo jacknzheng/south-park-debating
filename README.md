@@ -61,8 +61,9 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 ## Content assumptions
 
-- Next debate: Tuesday, October 20, 2026, 6:00pm at South Park Commons; topic decided by the poll.
-- Past debates: AI persuasion (October 13), AI judges and juries (October 6), AI referendums (September 22), AI disclosure (September 15).
+- Next debate: Tuesday, October 27, 2026, 6:00pm at South Park Commons; topic decided by the poll.
+- Past debates: US-led world order (October 20; affirmative win), AI persuasion (October 13), AI judges and juries (October 6), AI referendums (September 22), AI disclosure (September 15).
+- The October 20 debate uses the supplied Economist image URL directly.
 - September 15 lists Jack Zheng and Sam Miserendino as recorded participants. Their team assignments were not supplied.
 
 ## Assets and hosting
