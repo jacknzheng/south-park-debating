@@ -20,16 +20,18 @@ function Home() {
           <img className="cover-image" src={imageSrc(lastWeek.image)} alt="" />
           <div className="featured-main-heading">
             <h3><Link to="/archive" hash={lastWeek.id}>{lastWeek.title}</Link></h3>
-            <p className="featured-category">{lastWeek.category}</p>
           </div>
-          <p className="featured-description">{lastWeek.description}</p>
+          <dl className="featured-result">
+            <dt>{lastWeek.result}</dt><dd>{lastWeek.winners?.join(', ')}</dd>
+            <dt>{lastWeek.judges!.length > 1 ? 'Judges' : 'Judge'}</dt><dd>{lastWeek.judges!.join(', ')}</dd>
+          </dl>
         </article>
         <ul className="featured-list">
           {older.slice(0, 4).map(debate => <li key={debate.id}>
             <article className="featured-item">
               <div>
-                <h3><Link to="/archive" hash={debate.id}>{debate.shortTitle}</Link></h3>
-                <p className="featured-category">{debate.category}</p>
+                <h3><Link to="/archive" hash={debate.id}>{debate.title}</Link></h3>
+                <p className="featured-category">{debate.winners ? `${debate.result}: ${debate.winners.join(', ')}` : debate.result}</p>
               </div>
               <img className="cover-image" src={imageSrc(debate.image)} alt="" />
             </article>

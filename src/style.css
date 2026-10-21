@@ -51,13 +51,13 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 .underlined-link:hover { text-decoration: none; border-color: var(--ink) }
 .plain-list { list-style: none; padding: 0; margin: 0; line-height: 1.8 }
 
-/* Header: SPC mark, South Park Debating */
+/* Header: SPC mark | South Park Debating */
 .site-frame { max-width: 1424px; margin: 0 auto; padding: 0 40px }
 .site-header { min-height: 120px; display: flex; align-items: center; justify-content: space-between; gap: 40px; border-bottom: 1px solid var(--ink) }
 .wordmark { display: flex; align-items: center; gap: 20px; white-space: nowrap }
 .wordmark:hover { text-decoration: none }
 .wordmark img { width: 48px; height: 48px; filter: brightness(1.06) contrast(1.1); mix-blend-mode: multiply }
-.wordmark span { font-size: var(--text-h2); font-weight: 600; letter-spacing: -.3px; line-height: 1; padding: 10px 0 }
+.wordmark span { font-size: var(--text-h2); font-weight: 600; letter-spacing: -.3px; line-height: 1; padding: 10px 0 10px 20px; border-left: 1px solid var(--ink) }
 .site-header nav { display: flex; gap: 32px; font-size: var(--text-small) }
 .site-header nav a { padding: 10px 0 }
 .site-header nav a[data-status=active] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 8px }
@@ -75,7 +75,9 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 .featured-main .cover-image { grid-column: 1 / -1; aspect-ratio: 3 / 2 }
 .featured-main-heading { grid-column: span 2; display: flex; flex-direction: column; gap: 4px }
 .featured-main h3 { font-size: clamp(28px, .857rem + 2.232vw, 48px); line-height: 1.1; letter-spacing: -.035em; text-wrap: pretty }
-.featured-description { font-size: clamp(16px, .792rem + .521vw, 18px); line-height: 1.25; letter-spacing: .02em; text-wrap: pretty }
+.featured-result { font-size: clamp(16px, .792rem + .521vw, 18px); line-height: 1.25; letter-spacing: .02em }
+.featured-result dt { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px }
+.featured-result dd + dt { margin-top: 20px }
 .featured-category { color: var(--muted); font-size: 12px; line-height: 1.25; letter-spacing: .02em }
 .featured-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 24px; align-content: start }
 .featured-list li { padding: 20px 0; border-top: 1px solid var(--line) }
@@ -83,7 +85,7 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 .featured-item { position: relative; display: flex; justify-content: space-between; gap: 16px }
 .featured-item > div { display: flex; flex-direction: column; gap: 4px }
 .featured-item h3 { font-size: clamp(18px, .812rem + .783vw, 21px); line-height: 1.15; letter-spacing: -.015em; text-wrap: pretty }
-.featured-item .cover-image { width: 80px; flex-shrink: 0; aspect-ratio: 1 }
+.featured-item .cover-image { width: 80px; flex-shrink: 0; align-self: flex-start; aspect-ratio: 1 }
 .featured h3 a { transition: color .15s }
 .featured h3 a:hover { text-decoration: none; color: var(--accent) }
 .featured h3 a::before { content: ''; position: absolute; inset: 0 }
@@ -154,6 +156,7 @@ html { scroll-behavior: smooth }
   .site-header { display: block; padding-top: 24px; min-height: 0 }
   .wordmark { gap: 14px }
   .wordmark img { width: 40px; height: 40px }
+  .wordmark span { padding-left: 14px }
   .site-header nav { gap: 16px; flex-wrap: wrap; margin-top: 16px; padding-bottom: 8px }
   .this-week { padding: 64px 0 56px }
   .featured-main { grid-template-columns: 1fr; gap: 16px }
