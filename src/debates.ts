@@ -23,7 +23,16 @@ export interface Debate {
 // The topic poll on /topics. Votes are stored per week, so a new poll just needs a new week id.
 export const poll = {
   week: '2026-10-27',
-  topics: ['Free trade vs. protectionism', 'US–China geopolitics', 'Universal basic income', 'Balance of powers', 'Elections & voting'],
+  topics: [
+    'Free trade vs. protectionism',
+    'US–China geopolitics',
+    'Universal basic income',
+    'Balance of powers',
+    'Elections & voting',
+    'Trade-offs of AGI',
+    'Open weight models',
+    'Model welfare & consciousness',
+  ],
 }
 
 // Newest first. Incomplete rosters are kept explicit.
