@@ -45,5 +45,6 @@ function Rules() {
         </ul>
       </section>
     </div>
+    <p className="topics-reading">The judging rubric is available in Notion. <a className="underlined-link" href="https://app.notion.com/p/jacknzheng/Judging-rubric-404e66b3353281bf8267d65ec3185129?source=copy_link" target="_blank" rel="noopener noreferrer">Judging rubric <span aria-hidden="true">↗</span></a></p>
   </main>
 }
