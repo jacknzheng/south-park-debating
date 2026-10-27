@@ -29,6 +29,8 @@ function Rules() {
       <section className="rules-section" aria-labelledby="speakers">
         <h2 id="speakers">Speakers</h2>
         <ul>
+          <li>Each team has 18 minutes to present its case. We recommend 5 minutes per speaker.</li>
+          <li>After each speech, there is a 3 minute break for judges to write notes and the next speaker to prepare.</li>
           <li>Third speakers must add a new extension and must not contradict their own side.</li>
           <li>Fourth speakers summarize and must not introduce new arguments.</li>
         </ul>
@@ -37,7 +39,8 @@ function Rules() {
         <h2 id="points-of-information">Points of information</h2>
         <ul>
           <li>Not allowed in the first or last minute of a speech.</li>
-          <li>About 15 seconds each. The speaker may accept or decline and should take one or two.</li>
+          <li>About 15 seconds each. Speakers should take one or two.</li>
+          <li>Audience members may also offer points of information. Speakers may accept or reject them.</li>
           <li>Badgering, and offering points by phrases other than “point of information,” are penalized.</li>
         </ul>
       </section>
