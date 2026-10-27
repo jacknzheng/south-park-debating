@@ -27,6 +27,7 @@ The build creates Start’s client and server bundles, then prerenders each rout
 - `/leaderboard`: individual wins totaled across past debates, with shared places for ties (1, 2, 2, 4). The old `/teams` address also shows the leaderboard.
 - `/archive`: past debates as a CFR events-style list (date, category tag, motion, result, image), searchable. Link to one debate with `/archive#<id>`, e.g. `/archive#2026-10-06`.
 - `/topics`: the topic poll for next week, plus a link to the Topics by week page in Notion.
+- `/rules`: read the rules for definitions, opposition cases, speaker roles, and points of information.
 
 ## Update a week
 

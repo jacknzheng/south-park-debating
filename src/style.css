@@ -57,7 +57,7 @@ a, button, input, select { -webkit-tap-highlight-color: transparent }
 .wordmark:hover { text-decoration: none }
 .wordmark img { width: 48px; height: 48px; filter: brightness(1.06) contrast(1.1); mix-blend-mode: multiply }
 .wordmark span { font-size: var(--text-h2); font-weight: 600; letter-spacing: -.3px; line-height: 1; padding: 10px 0 10px 20px; border-left: 1px solid var(--ink) }
-.site-header nav { display: flex; gap: 32px; font-size: var(--text-small) }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 16px 32px; font-size: var(--text-small) }
 .site-header nav a { padding: 10px 0 }
 .site-header nav a[data-status=active] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 8px }
 
@@ -130,6 +130,12 @@ html { scroll-behavior: smooth }
 .topics-reading a { margin-left: 8px; color: var(--ink) }
 .empty-state button { border: 0; border-bottom: 1px solid var(--ink); background: none; padding: 0 0 3px; margin-top: 16px }
 
+.rules-sections { margin-top: 56px; border-top: 1px solid var(--ink) }
+.rules-section { display: grid; grid-template-columns: 200px minmax(0, 760px); gap: 40px; padding: 36px 0; border-bottom: 1px solid var(--line) }
+.rules-section h2 { font-family: var(--sans); font-style: normal; line-height: 1.2; letter-spacing: -.3px }
+.rules-section ul { margin: 0; padding-left: 24px; line-height: 1.6 }
+.rules-section li + li { margin-top: 12px }
+
 /* Misc */
 .not-found { padding: 72px 0 }
 .not-found h1 { margin-bottom: 28px }
@@ -171,6 +177,8 @@ html { scroll-behavior: smooth }
   .poll-bar { grid-column: 1 / -1; grid-row: 2 }
   .list-row { grid-template-columns: 1fr; gap: 12px; padding: 28px 0 }
   .leaderboard-table { margin-top: 32px }
+  .rules-sections { margin-top: 32px }
+  .rules-section { grid-template-columns: 1fr; gap: 16px; padding: 28px 0 }
   .list-row .cover-image { order: -1 }
   .list-date span { display: inline; margin-left: 8px }
 }

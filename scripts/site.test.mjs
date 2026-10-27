@@ -99,7 +99,7 @@ test('unknown page returns a real 404 with a recovery link', async () => {
 })
 
 test('every prerendered page uses the GitHub Pages base path and its files exist', async () => {
-  for (const route of ['/', '/archive', '/leaderboard', '/teams', '/topics']) {
+  for (const route of ['/', '/archive', '/leaderboard', '/teams', '/topics', '/rules']) {
     const html = await readFile(`dist/client${route === '/' ? '' : route}/index.html`, 'utf8')
     assert.match(html, /id="main"/)
     for (const [, url] of html.matchAll(/(?:src|href)="(\/[^"#?]*)/g)) {

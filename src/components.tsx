@@ -11,6 +11,7 @@ export function Header() {
       <Link to="/leaderboard">Leaderboard</Link>
       <Link to="/archive">Past debates</Link>
       <Link to="/topics">Topics</Link>
+      <Link to="/rules">Rules</Link>
     </nav>
   </header>
 }
