@@ -16,7 +16,7 @@ test('home leads with the vote, then five featured debates with images', async (
   assert.match(html, /class="this-week"/)
   assert.match(html, /Have a say in next week’s debating topics/)
   assert.match(html, /href="\/south-park-debating\/topics" class="outline-button"/)
-  assert.match(html, /Tuesday, October 27 · 6:00pm · South Park Commons/)
+  assert.match(html, /Tuesday, November 3 · 6:00pm · South Park Commons/)
   assert.match(html, /Featured debate topics/)
   assert.match(html, /THP a US-led world order to a multipolar world\./)
   assert.match(html, /undisclosed persuasion/)
@@ -87,7 +87,7 @@ test('topics page shows the poll and links to the Notion topics list', async () 
   const html = await htmlFor('/topics')
   for (const topic of poll.topics) assert.ok(html.includes(topic.replace('&', '&amp;')), topic)
   assert.equal((html.match(/type="checkbox"/g) || []).length, poll.topics.length)
-  assert.match(html, /Tuesday, October 27/)
+  assert.match(html, /Tuesday, November 3/)
   assert.match(html, /href="https:\/\/app\.notion\.com\/p\/jacknzheng\/Topics-by-week-/)
   assert.match(html, /target="_blank"/)
 })
@@ -112,10 +112,12 @@ test('every prerendered page uses the GitHub Pages base path and its files exist
 })
 
 // /poster.png is a permanent link used elsewhere; a failing test blocks the deploy so the last good poster stays live.
-test('poster and its white fallback are 1364x1634 PNGs', async () => {
+test('poster supports standard or double resolution and fallback keeps standard size', async () => {
   for (const file of ['poster.png', 'poster-fallback.png']) {
     const png = await readFile(`dist/client/${file}`)
     assert.equal(png.subarray(1, 4).toString(), 'PNG', `${file} is not a PNG`)
-    assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], [1364, 1634], `${file} must be 1364x1634`)
+    const dimensions = [png.readUInt32BE(16), png.readUInt32BE(20)]
+    const allowed = file === 'poster.png' ? [[1364, 1634], [2728, 3268]] : [[1364, 1634]]
+    assert.ok(allowed.some(([width, height]) => dimensions[0] === width && dimensions[1] === height), `${file} has unsupported dimensions: ${dimensions.join('x')}`)
   }
 })

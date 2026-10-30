@@ -62,7 +62,7 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 ## Content assumptions
 
-- Next debate: Tuesday, October 27, 2026, 6:00pm at South Park Commons; topic decided by the poll.
+- Next debate: Tuesday, November 3, 2026, 6:00pm at South Park Commons; topic decided by the poll.
 - Past debates: US-led world order (October 20; affirmative win), AI persuasion (October 13), AI judges and juries (October 6), AI referendums (September 22), AI disclosure (September 15).
 - The October 20 debate uses the supplied Economist image URL directly.
 - September 15 lists Jack Zheng and Sam Miserendino as recorded participants. Their team assignments were not supplied.
@@ -71,6 +71,6 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 The supplied poster is unchanged in `public/debate-poster.png`; `public/images/ai-judges.jpg` is its photograph cropped out. Each past debate's image is set by the `image` field in `src/debates.ts`. The header logo and `favicon.ico` come from the South Park Commons GitHub avatar (`public/spc-logo.jpg`). Season Sans (regular, semibold) is bundled under `public/fonts/` from the supplied local font files. Adobe Caslon Pro (regular, italic) and Season Sans Medium were copied from cfr.org/education; Adobe Caslon Pro is a licensed Adobe font.
 
-This week's poster lives at a permanent link, https://jacknzheng.github.io/south-park-debating/poster.png, which other places embed. To update it, replace `public/poster.png` with a 1364 × 1634 PNG on white (no transparency) and push. If the file is missing or the wrong size, `npm test` fails and the deploy stops, so the last good poster stays live. `public/poster-fallback.png` is a plain white image of the same size: copy it over `poster.png` to blank the link on purpose.
+Other sites embed this week's poster from https://jacknzheng.github.io/south-park-debating/poster.png. To update it, replace `public/poster.png` with a PNG at 1364 × 1634 or 2728 × 3268, then push. The tests check the file's presence and dimensions before deployment. To blank the link, copy the plain white 1364 × 1634 image from `public/poster-fallback.png` over `poster.png`.
 
 The site is hosted on GitHub Pages at https://jacknzheng.github.io/south-park-debating/. `.github/workflows/deploy.yml` builds, tests and publishes `dist/client` on every push to `main`. Because the site lives under `/south-park-debating/`, `vite.config.ts` sets `base`, and code that references files in `public/` prefixes them with `import.meta.env.BASE_URL`.

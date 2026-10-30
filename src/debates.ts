@@ -22,7 +22,7 @@ export interface Debate {
 
 // The topic poll on /topics. Votes are stored per week, so a new poll just needs a new week id.
 export const poll = {
-  week: '2026-10-27',
+  week: '2026-11-03',
   topics: [
     'Free trade vs. protectionism',
     'US–China geopolitics',
@@ -39,9 +39,9 @@ export const poll = {
 // This is the only file to edit when adding a debate or changing a roster.
 export const debates: Debate[] = [
   {
-    id: '2026-10-27', title: 'Topic up for vote',
-    shortTitle: 'Topic up for vote', date: '2026-10-27',
-    dateLabel: 'Tuesday, October 27', time: '6:00pm', venue: 'South Park Commons',
+    id: '2026-11-03', title: 'Topic up for vote',
+    shortTitle: 'Topic up for vote', date: '2026-11-03',
+    dateLabel: 'Tuesday, November 3', time: '6:00pm', venue: 'South Park Commons',
     category: 'To be decided', status: 'upcoming',
     description: 'Next week’s topic is chosen by vote on the Topics page.',
   },
