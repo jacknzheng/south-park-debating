@@ -46,6 +46,17 @@ export const debates: Debate[] = [
     description: 'Next week’s topic is chosen by vote on the Topics page.',
   },
   {
+    id: '2026-10-26',
+    title: 'We believe people have a right to a UBI without an obligation to work.',
+    shortTitle: 'A right to universal basic income without an obligation to work?',
+    date: '2026-10-26', dateLabel: 'October 26, 2026',
+    category: 'Universal basic income', status: 'past',
+    image: 'images/universal-basic-income.png',
+    description: 'The house debated whether people have a right to universal basic income without an obligation to work.',
+    result: 'House winners', winners: ['Lev Stambler', 'Jeremy Ornstein', 'Shashank Tripathi'],
+    judges: ['Karina Qian', 'Sam Miserendino'],
+  },
+  {
     id: '2026-10-20',
     title: 'THP a US-led world order to a multipolar world.',
     shortTitle: 'A US-led world order or a multipolar world?', date: '2026-10-20', dateLabel: 'October 20, 2026',

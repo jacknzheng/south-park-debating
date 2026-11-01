@@ -20,8 +20,12 @@ test('home leads with the vote, then five featured debates with images', async (
   assert.match(html, /Featured debate topics/)
   assert.match(html, /THP a US-led world order to a multipolar world\./)
   assert.match(html, /undisclosed persuasion/)
-  assert.match(html, /Judge<\/dt><dd>Karina Qian/)
-  assert.match(html, /Affirmative won<\/dt><dd>Laura Bocek, Akshit Tyagi, Ryan Tsang/)
+  assert.match(html, /We believe people have a right to a UBI without an obligation to work\./)
+  assert.match(html, /Judges<\/dt><dd>Karina Qian, Sam Miserendino/)
+  assert.match(html, /House winners<\/dt><dd>Lev Stambler, Jeremy Ornstein, Shashank Tripathi/)
+  assert.match(html, /Affirmative won: Laura Bocek, Akshit Tyagi, Ryan Tsang/)
+  assert.match(html, /href="\/south-park-debating\/archive#2026-10-26"/)
+  assert.match(html, /src="\/south-park-debating\/images\/universal-basic-income.png"/)
   assert.match(html, /Affirmative won: Aaquib Syed, Karina Qian, Allan Fang/)
   assert.equal((html.match(/class="cover-image"/g) || []).length, 5)
   assert.match(html, /src="\/south-park-debating\/spc-logo.jpg"/)
@@ -36,15 +40,17 @@ test('leaderboard totals individual wins and repeats places for ties', async () 
   const expected = [
     { name: 'Aaquib Syed', wins: 2, place: 1 },
     { name: 'Allan Fang', wins: 2, place: 1 },
+    { name: 'Jeremy Ornstein', wins: 2, place: 1 },
     { name: 'Sam Miserendino', wins: 2, place: 1 },
-    { name: 'Akshit Tyagi', wins: 1, place: 4 },
-    { name: 'Albert Su', wins: 1, place: 4 },
-    { name: 'Jack Zheng', wins: 1, place: 4 },
-    { name: 'Jeremy Ornstein', wins: 1, place: 4 },
-    { name: 'Karina Qian', wins: 1, place: 4 },
-    { name: 'Laura Bocek', wins: 1, place: 4 },
-    { name: 'Ryan Tsang', wins: 1, place: 4 },
-    { name: 'Seth Morton', wins: 1, place: 4 },
+    { name: 'Akshit Tyagi', wins: 1, place: 5 },
+    { name: 'Albert Su', wins: 1, place: 5 },
+    { name: 'Jack Zheng', wins: 1, place: 5 },
+    { name: 'Karina Qian', wins: 1, place: 5 },
+    { name: 'Laura Bocek', wins: 1, place: 5 },
+    { name: 'Lev Stambler', wins: 1, place: 5 },
+    { name: 'Ryan Tsang', wins: 1, place: 5 },
+    { name: 'Seth Morton', wins: 1, place: 5 },
+    { name: 'Shashank Tripathi', wins: 1, place: 5 },
   ]
   assert.deepEqual(getLeaderboard(debates), expected)
   for (const route of ['/leaderboard', '/teams']) {
@@ -70,16 +76,17 @@ test('only recorded past wins count, once per person per week', () => {
   assert.deepEqual(getLeaderboard([]), [])
 })
 
-test('past debates page lists all five with dates, results and images', async () => {
+test('past debates page lists all six with dates, results and images', async () => {
   const html = await htmlFor('/archive')
-  assert.equal((html.match(/class="list-row"/g) || []).length, 5)
-  for (const id of ['2026-10-20', '2026-10-13', '2026-10-06', '2026-09-22', '2026-09-15']) assert.match(html, new RegExp(`id="${id}"`))
+  assert.equal((html.match(/class="list-row"/g) || []).length, 6)
+  for (const id of ['2026-10-26', '2026-10-20', '2026-10-13', '2026-10-06', '2026-09-22', '2026-09-15']) assert.match(html, new RegExp(`id="${id}"`))
+  for (const text of ['October 26, 2026', 'We believe people have a right to a UBI without an obligation to work.', 'House winners: Lev Stambler, Jeremy Ornstein, Shashank Tripathi', 'Judges: Karina Qian, Sam Miserendino', 'src="/south-park-debating/images/universal-basic-income.png"']) assert.ok(html.includes(text), text)
   assert.ok(html.includes('THP a US-led world order to a multipolar world.'))
   assert.ok(html.includes('Affirmative won: Laura Bocek, Akshit Tyagi, Ryan Tsang'))
   assert.ok(html.includes('Judge: Karina Qian'))
   assert.ok(html.includes('src="https://www.economist.com/content-assets/images/20251025_CND001.jpg"'))
   for (const text of ['Opposition won', 'Seth Morton', 'Karina Qian', 'Judges: Sam Miserendino, Laura Bocek, Jack Zheng', 'September 22, 2026']) assert.ok(html.includes(text), text)
-  assert.equal((html.match(/class="cover-image"/g) || []).length, 5)
+  assert.equal((html.match(/class="cover-image"/g) || []).length, 6)
   assert.match(html, /type="search"/)
 })
 
