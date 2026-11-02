@@ -10,7 +10,7 @@ export const Route = createFileRoute('/topics')({
 // Votes live in a Supabase table (see README). The publishable key can only add and read votes.
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseKey = import.meta.env.VITE_SUPABASE_KEY
-const votedCookie = `voted_${poll.week}`
+const votedCookie = `voted_${poll.week}_v${poll.revision}`
 
 function Topics() {
   const nextDebate = debates.find(debate => debate.id === poll.week)

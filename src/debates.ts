@@ -23,15 +23,14 @@ export interface Debate {
 // The topic poll on /topics. Votes are stored per week, so a new poll just needs a new week id.
 export const poll = {
   week: '2026-11-03',
+  revision: 2,
   topics: [
-    'Free trade vs. protectionism',
-    'US–China geopolitics',
-    'Universal basic income',
-    'Balance of powers',
-    'Elections & voting',
-    'Trade-offs of AGI',
-    'Open weight models',
-    'Model welfare & consciousness',
+    'Chinese open-weight AI',
+    'AI consciousness and moral standing',
+    'Medical progress versus digital security',
+    'Academic freedom and public funding',
+    'Systems of government',
+    'Asylum and economic contribution',
   ],
 }
 
