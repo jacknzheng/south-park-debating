@@ -22,15 +22,39 @@ export interface Debate {
 
 // The topic poll on /topics. Votes are stored per week, so a new poll just needs a new week id.
 export const poll = {
-  week: '2026-11-03',
-  revision: 2,
+  week: '2026-11-10',
+  revision: 1,
   topics: [
-    'Chinese open-weight AI',
-    'AI consciousness and moral standing',
-    'Medical progress versus digital security',
-    'Academic freedom and public funding',
-    'Systems of government',
-    'Asylum and economic contribution',
+    { title: 'The US, China, and global power', questions: [
+      'Should the US cut all economic ties with China?',
+      'Does China’s political system give it an edge in developing AI?',
+      'Will English lose its place as the main language of global business within ten years?',
+    ] },
+    { title: 'Who should make our laws?', questions: [
+      'In the AI era, would experts govern better than elected representatives?',
+      'Should citizens vote directly on proposed laws instead of electing people to decide for them?',
+      'Should you be allowed to send a personal AI agent to vote on your behalf?',
+    ] },
+    { title: 'Who should own AI, and what rights should it have?', questions: [
+      'Should the government take ownership of the leading AI labs?',
+      'Should AI agents be recognized as legal persons, as corporations are?',
+      'Would society have been better off if AI had never been developed?',
+    ] },
+    { title: 'What to build', questions: [
+      'Would we be better off if most startups had never been founded?',
+      'Do Silicon Valley engineers have a duty to build defense technology for the US and its allies?',
+      'Can a consumer app like Instagram do more for US power abroad than a weapons company can?',
+    ] },
+    { title: 'Meritocracy', questions: [
+      'Will AI make the idea of earning your place through talent and effort obsolete?',
+      'Is taste—the ability to recognize what’s good—the most valuable skill in the AI era?',
+      'Should universities consider an applicant’s race when making admissions decisions?',
+    ] },
+    { title: 'Everyday virtues worth questioning', questions: [
+      'Is politeness a form of dishonesty?',
+      'Is ambition an addiction that society rewards?',
+      'Does the habit of favoring the simplest explanation lead us astray?',
+    ] },
   ],
 }
 
@@ -38,9 +62,9 @@ export const poll = {
 // This is the only file to edit when adding a debate or changing a roster.
 export const debates: Debate[] = [
   {
-    id: '2026-11-03', title: 'Topic up for vote',
-    shortTitle: 'Topic up for vote', date: '2026-11-03',
-    dateLabel: 'Tuesday, November 3', time: '6:00pm', venue: 'South Park Commons',
+    id: '2026-11-10', title: 'Topic up for vote',
+    shortTitle: 'Topic up for vote', date: '2026-11-10',
+    dateLabel: 'Tuesday, November 10', time: '6:00pm', venue: 'South Park Commons',
     category: 'To be decided', status: 'upcoming',
     description: 'Next week’s topic is chosen by vote on the Topics page.',
   },

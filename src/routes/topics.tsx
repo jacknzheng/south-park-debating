@@ -26,7 +26,7 @@ function Topics() {
     if (!voted || !supabaseUrl) return
     fetch(`${supabaseUrl}/rest/v1/topic_votes?select=topic&week=eq.${poll.week}`, { headers: { apikey: supabaseKey } })
       .then(response => response.json())
-      .then((rows: { topic: string }[]) => setCounts(Object.fromEntries(poll.topics.map(topic => [topic, rows.filter(row => row.topic === topic).length]))))
+      .then((rows: { topic: string }[]) => setCounts(Object.fromEntries(poll.topics.map(({ title }) => [title, rows.filter(row => row.topic === title).length]))))
       .catch(() => setStatus('error'))
   }, [voted])
 
@@ -49,14 +49,17 @@ function Topics() {
 
   return <main id="main" className="list-page">
     <h1>Topics</h1>
-    <p className="list-intro">Vote on next week’s topic<span>{nextDebate?.dateLabel}</span></p>
-    <div className="list-count"><p>{poll.topics.length} topics</p><p className="list-meta">{voted ? `${total} votes so far` : 'Pick up to two. Results show after you vote.'}</p></div>
+    <p className="list-intro">What should we debate next week?<span>{nextDebate?.dateLabel}</span></p>
+    <div className="list-count"><p>{poll.topics.length} topic areas</p><p className="list-meta">{voted ? `${total} votes so far` : 'Pick up to two topic areas. Results show after you vote.'}</p></div>
 
     {!voted && <form className="poll" onSubmit={vote}>
-      {poll.topics.map(topic => <label className="poll-option" key={topic}>
-        <input type="checkbox" name="topic" value={topic} checked={choices.includes(topic)} disabled={choices.length === 2 && !choices.includes(topic)} onChange={() => setChoices(choices.includes(topic) ? choices.filter(c => c !== topic) : [...choices, topic])} />
-        <span>{topic}</span>
-      </label>)}
+      {poll.topics.map(({ title: topic, questions }, index) => <div className="poll-option" key={topic}>
+        <label>
+          <input aria-describedby={`examples-${index}`} type="checkbox" name="topic" value={topic} checked={choices.includes(topic)} disabled={choices.length === 2 && !choices.includes(topic)} onChange={() => setChoices(choices.includes(topic) ? choices.filter(c => c !== topic) : [...choices, topic])} />
+          <span>{topic}</span>
+        </label>
+        <ul id={`examples-${index}`}>{questions.map(question => <li key={question}>{question}</li>)}</ul>
+      </div>)}
       <button className="pill-button" disabled={choices.length === 0 || status === 'sending' || !supabaseUrl}>{status === 'sending' ? 'Sending…' : 'Vote'}</button>
       {!supabaseUrl && <p className="list-meta">Voting opens soon.</p>}
       {status === 'error' && <p className="list-meta" role="alert">Your vote didn’t go through. Please try again.</p>}
@@ -64,7 +67,7 @@ function Topics() {
 
     {voted && !counts && <p className="empty-state">{status === 'error' ? 'Couldn’t load the results. Refresh to try again.' : 'Loading results…'}</p>}
     {counts && <ol className="poll">
-      {[...poll.topics].sort((a, b) => counts[b] - counts[a]).map(topic => <li className="poll-result" key={topic}>
+      {poll.topics.map(({ title }) => title).sort((a, b) => counts[b] - counts[a]).map(topic => <li className="poll-result" key={topic}>
         <p>{topic}{counts[topic] === top && top > 0 && <span className="tag">Leading</span>}</p>
         <div className="poll-bar"><span style={{ width: `${total ? (counts[topic] / total) * 100 : 0}%` }} /></div>
         <p className="list-meta">{`${counts[topic]} ${counts[topic] === 1 ? 'vote' : 'votes'}`}</p>

@@ -62,7 +62,7 @@ After building, run `npm run export-preview`. Open `offline-preview/index.html` 
 
 ## Content assumptions
 
-- Next debate: Tuesday, November 3, 2026, 6:00pm at South Park Commons; topic decided by the poll.
+- Next debate: Tuesday, November 10, 2026, 6:00pm at South Park Commons; topic decided by the poll.
 - The October 26 entry records the universal basic income debate, with Lev Stambler, Jeremy Ornstein, and Shashank Tripathi as house winners. Karina Qian and Sam Miserendino judged. The entry uses the supplied illustration in `public/images/universal-basic-income.png`.
 - Earlier entries cover US-led world order (October 20; affirmative win), AI persuasion (October 13), AI judges and juries (October 6), AI referendums (September 22), AI disclosure (September 15).
 - The October 20 debate uses the supplied Economist image URL directly.

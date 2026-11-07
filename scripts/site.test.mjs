@@ -16,7 +16,7 @@ test('home leads with the vote, then five featured debates with images', async (
   assert.match(html, /class="this-week"/)
   assert.match(html, /Have a say in next week’s debating topics/)
   assert.match(html, /href="\/south-park-debating\/topics" class="outline-button"/)
-  assert.match(html, /Tuesday, November 3 · 6:00pm · South Park Commons/)
+  assert.match(html, /Tuesday, November 10 · 6:00pm · South Park Commons/)
   assert.match(html, /Featured debate topics/)
   assert.match(html, /THP a US-led world order to a multipolar world\./)
   assert.match(html, /undisclosed persuasion/)
@@ -92,9 +92,13 @@ test('past debates page lists all six with dates, results and images', async () 
 
 test('topics page shows the poll and links to the Notion topics list', async () => {
   const html = await htmlFor('/topics')
-  for (const topic of poll.topics) assert.ok(html.includes(topic.replace('&', '&amp;')), topic)
+  for (const { title, questions } of poll.topics) {
+    assert.ok(html.includes(title.replaceAll('&', '&amp;')), title)
+    assert.equal(questions.length, 3)
+    for (const question of questions) assert.ok(html.includes(question.replaceAll('&', '&amp;')), question)
+  }
   assert.equal((html.match(/type="checkbox"/g) || []).length, poll.topics.length)
-  assert.match(html, /Tuesday, November 3/)
+  assert.match(html, /Tuesday, November 10/)
   assert.match(html, /href="https:\/\/app\.notion\.com\/p\/jacknzheng\/Topics-by-week-/)
   assert.match(html, /target="_blank"/)
 })
