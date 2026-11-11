@@ -12,7 +12,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'stylesheet', href: stylesheet },
-      { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.ico`, sizes: 'any' },
+      { rel: 'icon', href: `${import.meta.env.BASE_URL}favicon.ico?v=capital-j`, sizes: '16x16 32x32 48x48 64x64 128x128 256x256' },
       { rel: 'preload', href: `${import.meta.env.BASE_URL}fonts/acaslonpro-italic.woff2`, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
       { rel: 'preload', href: `${import.meta.env.BASE_URL}fonts/acaslonpro-regular.woff2`, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
       { rel: 'preload', href: `${import.meta.env.BASE_URL}fonts/season-sans-regular.woff2`, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' },
